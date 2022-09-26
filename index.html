@@ -71,44 +71,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hexo教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/24/hexo%E6%95%99%E7%A8%8B/" class="article-date">
-  <time class="dt-published" datetime="2022-09-24T11:38:29.000Z" itemprop="datePublished">2022-09-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/09/24/hexo%E6%95%99%E7%A8%8B/">hexo教程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/24/hexo%E6%95%99%E7%A8%8B/" data-id="cl8fuffas0000k0u0exj169ma" data-title="hexo教程" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-hexo和github搭建博客指南" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/" class="article-date">
@@ -131,50 +93,58 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>首先当然是<code>nodejs</code>以及<code>git</code>的安装了，还有gihub新建一个<code>用户名.github.io</code>的仓库，此处就不多说啦。<br><br><br><br></p>
-<h3 id="SSH绑定github"><a href="#SSH绑定github" class="headerlink" title="SSH绑定github"></a>SSH绑定github</h3><ul>
+        <p>&#x9996;&#x5148;,&#x5F53;&#x7136;&#x662F;<code>nodejs</code>&#x4EE5;&#x53CA;<code>git</code>&#x7684;&#x5B89;&#x88C5;&#x4E86;&#xFF0C;&#x8FD8;&#x6709;gihub&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;<code>&#x7528;&#x6237;&#x540D;.github.io</code>&#x7684;&#x4ED3;&#x5E93;&#xFF0C;&#x6B64;&#x5904;&#x5C31;&#x4E0D;&#x591A;&#x8BF4;&#x5566;&#x3002;hh<br><br></p>
+<h3 id="SSH&#x7ED1;&#x5B9A;github"><a href="#SSH&#x7ED1;&#x5B9A;github" class="headerlink" title="SSH&#x7ED1;&#x5B9A;github"></a>SSH&#x7ED1;&#x5B9A;github</h3><ul>
 <li><code>ssh-keygen -t rsa -C &quot;email@qq.com&quot;</code></li>
 </ul>
-<p>将id_rsa.pub的公钥复制到github 头像那里 setting 的 SSH keys</p>
+<p>&#x5C06;id_rsa.pub&#x7684;&#x516C;&#x94A5;&#x590D;&#x5236;&#x5230;github &#x5934;&#x50CF;&#x90A3;&#x91CC; setting &#x7684; SSH keys</p>
 <ul>
-<li><code>ssh -T git@github.com</code>  测试是否ssh绑定成功<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi qwtoe! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure></li>
+<li><code>ssh -T git@github.com</code>  &#x6D4B;&#x8BD5;&#x662F;&#x5426;ssh&#x7ED1;&#x5B9A;&#x6210;&#x529F;<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi qwtoe! You<span class="string">&apos;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="hexo生成本地Blog"><a href="#hexo生成本地Blog" class="headerlink" title="hexo生成本地Blog"></a>hexo生成本地Blog</h3><p>到blog文件下git bash here</p>
+<h3 id="hexo&#x751F;&#x6210;&#x672C;&#x5730;Blog"><a href="#hexo&#x751F;&#x6210;&#x672C;&#x5730;Blog" class="headerlink" title="hexo&#x751F;&#x6210;&#x672C;&#x5730;Blog"></a>hexo&#x751F;&#x6210;&#x672C;&#x5730;Blog</h3><p>&#x5230;blog&#x6587;&#x4EF6;&#x4E0B;git bash here</p>
 <ul>
-<li><p><code>hexo init</code>  # 初始化，将github的hexo拉到本地</p>
+<li><p><code>hexo init</code> &#x521D;&#x59CB;&#x5316;&#xFF0C;&#x5C06;github&#x7684;hexo&#x62C9;&#x5230;&#x672C;&#x5730;&#x3002;</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br><span class="line">INFO  Cloning hexo-starter https://github.com/hexojs/hexo-starter.git</span><br><span class="line">INFO  Install dependencies</span><br><span class="line">NFO  Start blogging with Hexo!</span><br></pre></td></tr></table></figure>
-<p><img src="/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97%5C1663997716001-1aca09e8-9365-4ea0-9fa7-0799583105ec.png" alt="image.png"></p>
+<p><img src="/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/1663997716001-1aca09e8-9365-4ea0-9fa7-0799583105ec.png"></p>
 </li>
-<li><p><code>hexo s </code> # 静态生成本地hexo页面，相当于打开本地服务器, <strong>本地预览</strong></p>
+<li><p><code>hexo s</code> &#x9759;&#x6001;&#x751F;&#x6210;&#x672C;&#x5730;hexo&#x9875;&#x9762;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x6253;&#x5F00;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;, &#x5373;<strong>&#x672C;&#x5730;&#x9884;&#x89C8;</strong>&#x3002;</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/ . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><ul>
-<li>修改<code>_config.yml</code>文件：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">https://github.com/qwtoe/qwtoe.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
-respository的内容就是仓库Code下的HTTPS里的链接：<br><img src="/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97%5C1664007933026-e64a4e6c-8550-4178-80d3-2c016845588a.png" alt="image.png"></li>
+<h3 id="&#x53D1;&#x5E03;"><a href="#&#x53D1;&#x5E03;" class="headerlink" title="&#x53D1;&#x5E03;"></a>&#x53D1;&#x5E03;</h3><ul>
+<li>&#x4FEE;&#x6539;<code>_config.yml</code>&#x6587;&#x4EF6;&#xFF1A;<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">https://github.com/qwtoe/qwtoe.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>最后，到本地blog文件下git bash here</p>
+<p>respository&#x7684;&#x5185;&#x5BB9;&#x5C31;&#x662F;&#x4ED3;&#x5E93;Code&#x4E0B;&#x7684;HTTPS&#x91CC;&#x7684;&#x94FE;&#x63A5;&#xFF1A;</p>
+<p><img src="/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/1664007933026-e64a4e6c-8550-4178-80d3-2c016845588a.png"></p>
+<p><strong>&#x6700;&#x540E;</strong>&#xFF0C;&#x5230;&#x672C;&#x5730;blog&#x6587;&#x4EF6;&#x4E0B;git bash here</p>
 <ul>
 <li><code>npm install hexo-deployer-git --save</code></li>
-<li><code>hexo clean</code>  # 清除缓存，网页正常情况下可以忽略此条命令</li>
-<li><code>hexo g</code>  # 生成页面</li>
-<li><code>hexo  d</code>  # 上传github，多试几次</li>
+<li><code>hexo clean</code>  # &#x6E05;&#x9664;&#x7F13;&#x5B58;&#xFF0C;&#x7F51;&#x9875;&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x6B64;&#x6761;&#x547D;&#x4EE4;</li>
+<li><code>hexo g</code>  # &#x751F;&#x6210;&#x9875;&#x9762;</li>
+<li><code>hexo  d</code>  # &#x4E0A;&#x4F20;github&#xFF0C;&#x591A;&#x8BD5;&#x51E0;&#x6B21;</li>
 </ul>
-<p>可以合并后两个命令为<code>hexo g -d</code><br><br><br>成功后就可以在 <code>用户名.github.io</code> 访问 texo 的 hello world 页面 ！<br><br><br><br><br>**<font size=5>Done ! 以上 hexo 在 github 上部署的基本流程就完成了！</font>**<br><br><br><br><br><strong>下阶段</strong>就可以学习如何写自己新的博客，并发布到github。<br><br><br><br></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 总结主要 hexo 命令</span></span><br><span class="line">hexo n     <span class="comment"># 新建 md</span></span><br><span class="line">hexo g -d  <span class="comment"># 生成静态网页并部署到 Github</span></span><br><span class="line">or hexo -d g</span><br></pre></td></tr></table></figure>
-<p>hexo常用命令笔记 from <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000002632530">here</a>。<br><br /></p>
-<h3 id="hexo-文件目录结构"><a href="#hexo-文件目录结构" class="headerlink" title="hexo 文件目录结构"></a>hexo 文件目录结构</h3><p><img src="/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97%5C1664001235228-5558b0f4-9e63-45e8-ac42-a94e13612ab5.png" alt="image.png"><br><br><br><code>public</code>存放的是生成的静态页面<br><code>source/_posts</code> 存放的是我们写的文章<br><code>themes</code>  下存放的的是博客的主题<br><code>_config.yml </code>是博客全局配置文件<br><code>_config.landscape.yml</code>是博客主题配置文件\</p>
-<h3 id="可能出现的问题"><a href="#可能出现的问题" class="headerlink" title="可能出现的问题"></a>可能出现的问题</h3><ol>
-<li>如果在github新建READ.md后，<code>texo d</code>后会覆盖掉github原本的READ.md，即READ.md会消失。\<br>
-解决办法：\
-1.在source目录下新建一个 READ.md 即可，这个 READ.md 在`texo d`后就相当于 github 原本的   READ.md 了 \
-2.`_config.yml`中设置`skip_render: README.md`  # 让md文件不被转换成HTML \
-3.`texo g -d`</li>
+<p>&#x53EF;&#x4EE5;&#x5408;&#x5E76;&#x540E;&#x4E24;&#x4E2A;&#x547D;&#x4EE4;&#x4E3A;<code>hexo g -d</code></p>
+<p>&#x6210;&#x529F;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x5728; <code>&#x7528;&#x6237;&#x540D;.github.io</code> &#x8BBF;&#x95EE; texo &#x7684; hello world &#x9875;&#x9762; &#xFF01;   </p>
+<p><strong><font size="5">Done ! &#x4EE5;&#x4E0A; hexo &#x5728; github &#x4E0A;&#x90E8;&#x7F72;&#x7684;&#x57FA;&#x672C;&#x6D41;&#x7A0B;&#x5C31;&#x5B8C;&#x6210;&#x4E86;&#xFF01;</font></strong> </p>
+<p><strong>&#x4E0B;&#x9636;&#x6BB5;</strong>&#x5C31;&#x53EF;&#x4EE5;&#x5B66;&#x4E60;&#x5982;&#x4F55;&#x5199;&#x81EA;&#x5DF1;&#x65B0;&#x7684;&#x535A;&#x5BA2;&#xFF0C;&#x5E76;&#x53D1;&#x5E03;&#x5230;github&#x3002;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x603B;&#x7ED3;&#x4E3B;&#x8981; hexo &#x547D;&#x4EE4;</span></span><br><span class="line">hexo n     <span class="comment"># &#x65B0;&#x5EFA; md</span></span><br><span class="line">hexo g -d  <span class="comment"># &#x751F;&#x6210;&#x9759;&#x6001;&#x7F51;&#x9875;&#x5E76;&#x90E8;&#x7F72;&#x5230; Github</span></span><br><span class="line">or hexo -d g</span><br></pre></td></tr></table></figure>
+<p><strong>hexo&#x5E38;&#x7528;&#x547D;&#x4EE4;&#x7B14;&#x8BB0;</strong>&#xFF0C; from <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000002632530">here</a>&#x3002;<br><br></p>
+<h3 id="hexo-&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x7ED3;&#x6784;"><a href="#hexo-&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x7ED3;&#x6784;" class="headerlink" title="hexo &#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x7ED3;&#x6784;"></a>hexo &#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x7ED3;&#x6784;</h3><p><img src="/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/1664001235228-5558b0f4-9e63-45e8-ac42-a94e13612ab5.png"><br><code>public</code>&#x5B58;&#x653E;&#x7684;&#x662F;&#x751F;&#x6210;&#x7684;&#x9759;&#x6001;&#x9875;&#x9762;<br><code>source/_posts</code> &#x5B58;&#x653E;&#x7684;&#x662F;&#x6211;&#x4EEC;&#x5199;&#x7684;&#x6587;&#x7AE0;<br><code>themes</code>  &#x4E0B;&#x5B58;&#x653E;&#x7684;&#x7684;&#x662F;&#x535A;&#x5BA2;&#x7684;&#x4E3B;&#x9898;<br><code>_config.yml </code>&#x662F;&#x535A;&#x5BA2;&#x5168;&#x5C40;&#x914D;&#x7F6E;&#x6587;&#x4EF6;<br><code>_config.landscape.yml</code>&#x662F;&#x535A;&#x5BA2;&#x4E3B;&#x9898;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</p>
+<h3 id="&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x95EE;&#x9898;"><a href="#&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x95EE;&#x9898;"></a>&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x95EE;&#x9898;</h3><ol>
+<li><p>&#x5982;&#x679C;&#x5728;github&#x65B0;&#x5EFA;READ.md&#x540E;&#xFF0C;<code>texo d</code>&#x540E;&#x4F1A;&#x8986;&#x76D6;&#x6389;github&#x539F;&#x672C;&#x7684;READ.md&#xFF0C;&#x5373;READ.md&#x4F1A;&#x6D88;&#x5931;&#x3002;</p>
+<p> <strong>&#x89E3;&#x51B3;&#x529E;&#x6CD5;</strong><br> (1).&#x5728;source&#x76EE;&#x5F55;&#x4E0B;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A; READ.md &#x5373;&#x53EF;&#xFF0C;&#x8FD9;&#x4E2A; READ.md &#x5728;<code>texo d</code>&#x540E;&#x5C31;&#x76F8;&#x5F53;&#x4E8E; github &#x539F;&#x672C;&#x7684;   READ.md &#x4E86; <br> (2).<code>_config.yml</code>&#x4E2D;&#x8BBE;&#x7F6E;<code>skip_render: README.md</code>   &#x8BA9;md&#x6587;&#x4EF6;&#x4E0D;&#x88AB;&#x8F6C;&#x6362;&#x6210;HTML <br> (3).<code>texo g -d</code></p>
+</li>
+<li><p>hexo&#x66F4;&#x6362;&#x4E3B;&#x9898;&#x540E; &#x62A5;&#x9519;&#xFF1A;<br>extends includes/layout.pug block content include includes/recent-posts.pug include includes/partial <br><strong>&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF1A;</strong><br>&#x6267;&#x884C;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-renderer-jade hexo-generator-feed hexo-generator-sitemap hexo-browsersync hexo-generator-archive</span><br></pre></td></tr></table></figure>
+<p>&#x518D; <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code>  </p>
+</li>
+<li><p>npm&#x5B89;&#x88C5;&#x5305;&#x65F6;&#x62A5;&#x9519;&#xFF1A;<br>npm ERR! arg Argument starts with non-ascii dash, this is probably invalid: &#x2013;save<br><strong>&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF1A;</strong><br>&#x56E0;&#x4E3A;&#x5B89;&#x88C5;&#x547D;&#x4EE4;&#x662F;&#x4ECE;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#x590D;&#x5236;&#x8FC7;&#x6765;&#x7684;&#xFF0C;&#x73B0;&#x5728;&#x5C06;&#x5B89;&#x88C5;&#x547D;&#x4EE4;&#x91CD;&#x65B0;&#x624B;&#x6572;&#x4E00;&#x7BC7;&#x518D;&#x6267;&#x884C;&#x5C31;&#x884C;&#x3002;</p>
+</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/" data-id="cl8fnr0if00018gu0802z5k7p" data-title="hexo配合github搭建博客指南" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/" data-id="cl8ij1m29000250u03ua77dlc" data-title="hexo配合github搭建博客指南" class="article-share-link">Share</a>
       
       
       
@@ -227,7 +197,7 @@ respository的内容就是仓库Code下的HTTPS里的链接：<br><img src="/hex
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/24/hello-world/" data-id="cl8fnr0ia00008gu07ikr353v" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/24/hello-world/" data-id="cl8ij1m1y000050u0hw2jdme0" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -282,10 +252,6 @@ respository的内容就是仓库Code下的HTTPS里的链接：<br><img src="/hex
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2022/09/24/hexo%E6%95%99%E7%A8%8B/">hexo教程</a>
-          </li>
         
           <li>
             <a href="/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/">hexo配合github搭建博客指南</a>
