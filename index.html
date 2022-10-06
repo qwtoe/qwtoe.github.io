@@ -71,6 +71,110 @@
       <div class="outer">
         <section id="main">
   
+    <article id="pytorch-matrix-rank结果异常的解释" class="h-entry article article-type-pytorch" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/06/matrix-rank%E7%BB%93%E6%9E%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E8%A7%A3%E9%87%8A/" class="article-date">
+  <time class="dt-published" datetime="2022-10-06T11:29:54.000Z" itemprop="datePublished">2022-10-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/10/06/matrix-rank%E7%BB%93%E6%9E%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E8%A7%A3%E9%87%8A/">matrix_rank结果异常的解释</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><code>torch.linalg.matrix_rank</code> &#x8BA1;&#x7B97;&#x77E9;&#x9635;&#x7684;&#x79E9;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x8BA1;&#x7B97;&#x4E00;&#x4E9B;&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x77E9;&#x9635;&#x7684;&#x79E9;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x80FD;&#x548C;&#x5B9E;&#x9645;&#x7684;&#x79E9;&#x5E76;&#x4E0D;&#x76F8;&#x7B49;&#x3002;</p>
+<p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;  <code>matrix_rank</code> &#x51FD;&#x6570;&#x662F;&#x901A;&#x8FC7;&#x5947;&#x5F02;&#x503C;&#x6765;&#x8BA1;&#x7B97;&#x77E9;&#x9635;&#x7684;&#x79E9;&#xFF0C; &#x800C;&#x4E14;&#x5F53;&#x5947;&#x5F02;&#x503C;&#x5C0F;&#x4E8E;&#x4E00;&#x5B9A;&#x503C;&#x7684;&#x65F6;&#x5019;&#xFF0C;<code>matrix_rank</code> &#x4F1A;&#x5C06;&#x8FD9;&#x4E9B;&#x5C0F;&#x4E8E;&#x9608;&#x503C;&#x7684;&#x5947;&#x5F02;&#x503C;&#x5F53;&#x4F5C;&#x96F6;&#xFF0C;&#x6240;&#x4EE5;&#x624D;&#x4F1A;&#x51FA;&#x73B0;&#x548C;&#x77E9;&#x9635;&#x771F;&#x6B63;&#x7684;&#x79E9;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x60F3;&#xFF0C;&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x5185;&#x90E8;&#xFF0C;&#x603B;&#x4F1A;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x4E0D;&#x7CBE;&#x786E;&#x7684;&#x6570;&#x503C;&#x4F30;&#x8BA1;&#xFF0C;&#x6B63;&#x662F;&#x8FD9;&#x4E9B;&#x4F30;&#x8BA1;&#x53EF;&#x80FD;&#x8BA9;&#x539F;&#x672C;&#x5E94;&#x8BE5;&#x4E3A; 0 &#x7684;&#x5947;&#x5F02;&#x503C;&#x7B49;&#x4E8E;&#x4E00;&#x4E2A;&#x5F88;&#x5C0F;&#x7684;&#x503C;&#xFF0C;&#x6BD4;&#x5982; <code>1e-5</code>&#xFF0C;&#x5047;&#x8BBE;&#x4E00;&#x4E2A;&#x77E9;&#x9635;&#x771F;&#x6B63;&#x7684;&#x5947;&#x5F02;&#x503C;&#x662F; <code>[1, 1, 1e-5]</code> &#xFF0C; &#x800C;&#x901A;&#x8FC7;<code>matrix_rank</code> &#x5F97;&#x5230;&#x7684;&#x77E9;&#x9635;&#x5947;&#x5F02;&#x503C;&#x662F; <code>[1, 1, 1e-5]</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x4E25;&#x683C;&#x6765;&#x8BF4;&#xFF0C;&#x77E9;&#x9635;&#x771F;&#x6B63;&#x7684;&#x79E9;&#x662F; 2&#xFF0C;&#x800C;&#x7B97;&#x51FA;&#x6765;&#x7684;&#x79E9;&#x662F; 3&#xFF0C;&#x6240;&#x4EE5;<code>matrix_rank</code> &#x5F15;&#x5165;&#x4E86;&#x4E00;&#x4E2A;&#x9608;&#x503C;&#xFF0C;&#x5F53;&#x5947;&#x5F02;&#x503C;&#x5C0F;&#x4E8E;&#x8FD9;&#x4E2A;&#x9608;&#x503C;&#x65F6;&#x770B;&#x4F5C;&#x4E3A; 0&#x3002;</p>
+<p>&#x5176;&#x5B9E; <code>matrix_rank</code> &#x5F97;&#x5230;&#x7684;&#x79E9; k &#x5176;&#x5B9E;&#x548C;&#x4E3B;&#x6210;&#x5206;&#x5206;&#x6790;&#x5F97;&#x51FA;&#x6765;&#x7684;&#x524D; k &#x5947;&#x5F02;&#x503C;&#xFF08;&#x7279;&#x5F81;&#x503C;&#xFF09;&#x4E00;&#x4E2A;&#x9053;&#x7406;&#xFF0C;&#x90FD;&#x662F;&#x5FFD;&#x7565;&#x975E;&#x5E38;&#x5C0F;&#x7684;&#x5947;&#x5F02;&#x503C;&#xFF0C;&#x53D6;&#x5269;&#x4E0B;&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x5947;&#x5F02;&#x503C;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x5728;&#x77E9;&#x9635;A&#x6BD4;&#x8F83;&#x5927;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x679C;A&#x771F;&#x6B63;&#x7684;&#x5947;&#x5F02;&#x503C;&#x5C31;&#x6BD4;&#x8F83;&#x5C0F;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x88AB; <code>matrix_rank</code> &#x7684;&#x9608;&#x503C;&#x8FC7;&#x8651;&#x6389;&#xFF0C;&#x8FD9;&#x624D;&#x8BA9;  <code>matrix_rank</code> &#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x548C;&#x771F;&#x6B63;&#x7684;&#x79E9;&#x4E0D;&#x4E00;&#x6837;&#x3002;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/06/matrix-rank%E7%BB%93%E6%9E%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E8%A7%A3%E9%87%8A/" data-id="cl8wza9fy00002wu01tc6ece2" data-title="matrix_rank结果异常的解释" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E5%87%BD%E6%95%B0/" rel="tag">python函数</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-新建springboot项目" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/28/%E6%96%B0%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE/" class="article-date">
+  <time class="dt-published" datetime="2022-09-28T11:51:26.000Z" itemprop="datePublished">2022-09-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/28/%E6%96%B0%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE/">新建springboot项目</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>from <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43006591/article/details/106137465">csdn</a>.</p>
+<p><strong>pom.xml&#x4FEE;&#x6539;springboot&#x7248;&#x672C;</strong></p>
+<ul>
+<li>IDEA&#x62A5;&#x9519;&#xFF1A;Project &#x2018;org.<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=springframework&amp;spm=1001.2101.3001.7020">springframework</a>.boot:spring-boot-starter-parent:2.2.6.RELEASE&#x2018; not found</li>
+</ul>
+<p>file&#x2013;&gt;Invalidate Caches&#x4E00;&#x4E0B;&#x5C31;&#x89E3;&#x51B3;&#x4E86;</p>
+<ul>
+<li>idea&#x7EC8;&#x7AEF;&#x65E0;&#x6CD5;&#x8BC6;&#x522B;java</li>
+</ul>
+<p>&#x7BA1;&#x7406;&#x5458;&#x8FD0;&#x884C;IDEA</p>
+<ul>
+<li>Plugin &#x2018;org.springframework.boot:spring-boot-maven-plugin:&#x2019; not found</li>
+</ul>
+<p>from <a target="_blank" rel="noopener" href="https://blog.csdn.net/ooppookid/article/details/120182049">csdn</a>.</p>
+<p>devtools&#xFF1A;&#x9879;&#x76EE;&#x7684;&#x70ED;&#x52A0;&#x8F7D;&#x91CD;&#x542F;&#x63D2;&#x4EF6;</p>
+<p>lombok&#xFF1A;&#x7B80;&#x5316;&#x4EE3;&#x7801;&#x7684;&#x5DE5;&#x5177;</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>reload project</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/28/%E6%96%B0%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE/" data-id="cl8wza9g300012wu02sawhwy1" data-title="新建springboot项目" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hexo和github搭建博客指南" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/" class="article-date">
@@ -224,7 +328,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%87%BD%E6%95%B0/" rel="tag">python函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li></ul>
     </div>
   </div>
 
@@ -234,7 +338,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 10px;">教程</a>
+      <a href="/tags/python%E5%87%BD%E6%95%B0/" style="font-size: 10px;">python函数</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 20px;">教程</a>
     </div>
   </div>
 
@@ -243,7 +347,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
     </div>
   </div>
 
@@ -254,6 +358,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/10/06/matrix-rank%E7%BB%93%E6%9E%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E8%A7%A3%E9%87%8A/">matrix_rank结果异常的解释</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/28/%E6%96%B0%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE/">新建springboot项目</a>
+          </li>
         
           <li>
             <a href="/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/">hexo配合github搭建博客指南</a>
