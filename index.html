@@ -95,14 +95,14 @@
       
         <p><code>torch.linalg.matrix_rank</code> &#x8BA1;&#x7B97;&#x77E9;&#x9635;&#x7684;&#x79E9;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x8BA1;&#x7B97;&#x4E00;&#x4E9B;&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x77E9;&#x9635;&#x7684;&#x79E9;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x80FD;&#x548C;&#x5B9E;&#x9645;&#x7684;&#x79E9;&#x5E76;&#x4E0D;&#x76F8;&#x7B49;&#x3002;</p>
 <p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;  <code>matrix_rank</code> &#x51FD;&#x6570;&#x662F;&#x901A;&#x8FC7;&#x5947;&#x5F02;&#x503C;&#x6765;&#x8BA1;&#x7B97;&#x77E9;&#x9635;&#x7684;&#x79E9;&#xFF0C; &#x800C;&#x4E14;&#x5F53;&#x5947;&#x5F02;&#x503C;&#x5C0F;&#x4E8E;&#x4E00;&#x5B9A;&#x503C;&#x7684;&#x65F6;&#x5019;&#xFF0C;<code>matrix_rank</code> &#x4F1A;&#x5C06;&#x8FD9;&#x4E9B;&#x5C0F;&#x4E8E;&#x9608;&#x503C;&#x7684;&#x5947;&#x5F02;&#x503C;&#x5F53;&#x4F5C;&#x96F6;&#xFF0C;&#x6240;&#x4EE5;&#x624D;&#x4F1A;&#x51FA;&#x73B0;&#x548C;&#x77E9;&#x9635;&#x771F;&#x6B63;&#x7684;&#x79E9;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
-<p>&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x60F3;&#xFF0C;&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x5185;&#x90E8;&#xFF0C;&#x603B;&#x4F1A;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x4E0D;&#x7CBE;&#x786E;&#x7684;&#x6570;&#x503C;&#x4F30;&#x8BA1;&#xFF0C;&#x6B63;&#x662F;&#x8FD9;&#x4E9B;&#x4F30;&#x8BA1;&#x53EF;&#x80FD;&#x8BA9;&#x539F;&#x672C;&#x5E94;&#x8BE5;&#x4E3A; 0 &#x7684;&#x5947;&#x5F02;&#x503C;&#x7B49;&#x4E8E;&#x4E00;&#x4E2A;&#x5F88;&#x5C0F;&#x7684;&#x503C;&#xFF0C;&#x6BD4;&#x5982; <code>1e-5</code>&#xFF0C;&#x5047;&#x8BBE;&#x4E00;&#x4E2A;&#x77E9;&#x9635;&#x771F;&#x6B63;&#x7684;&#x5947;&#x5F02;&#x503C;&#x662F; <code>[1, 1, 1e-5]</code> &#xFF0C; &#x800C;&#x901A;&#x8FC7;<code>matrix_rank</code> &#x5F97;&#x5230;&#x7684;&#x77E9;&#x9635;&#x5947;&#x5F02;&#x503C;&#x662F; <code>[1, 1, 1e-5]</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x4E25;&#x683C;&#x6765;&#x8BF4;&#xFF0C;&#x77E9;&#x9635;&#x771F;&#x6B63;&#x7684;&#x79E9;&#x662F; 2&#xFF0C;&#x800C;&#x7B97;&#x51FA;&#x6765;&#x7684;&#x79E9;&#x662F; 3&#xFF0C;&#x6240;&#x4EE5;<code>matrix_rank</code> &#x5F15;&#x5165;&#x4E86;&#x4E00;&#x4E2A;&#x9608;&#x503C;&#xFF0C;&#x5F53;&#x5947;&#x5F02;&#x503C;&#x5C0F;&#x4E8E;&#x8FD9;&#x4E2A;&#x9608;&#x503C;&#x65F6;&#x770B;&#x4F5C;&#x4E3A; 0&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x60F3;&#xFF0C;&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x5185;&#x90E8;&#xFF0C;&#x603B;&#x4F1A;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x4E0D;&#x7CBE;&#x786E;&#x7684;&#x6570;&#x503C;&#x4F30;&#x8BA1;&#xFF0C;&#x6B63;&#x662F;&#x8FD9;&#x4E9B;&#x4F30;&#x8BA1;&#x53EF;&#x80FD;&#x8BA9;&#x539F;&#x672C;&#x5E94;&#x8BE5;&#x4E3A; 0 &#x7684;&#x5947;&#x5F02;&#x503C;&#x7B49;&#x4E8E;&#x4E00;&#x4E2A;&#x5F88;&#x5C0F;&#x7684;&#x503C;&#xFF0C;&#x6BD4;&#x5982; <code>1e-5</code>&#xFF0C;&#x5047;&#x8BBE;&#x4E00;&#x4E2A;&#x77E9;&#x9635;&#x771F;&#x6B63;&#x7684;&#x5947;&#x5F02;&#x503C;&#x662F; <code>[1, 1, 0]</code> &#xFF0C; &#x800C;&#x901A;&#x8FC7;<code>matrix_rank</code> &#x5F97;&#x5230;&#x7684;&#x77E9;&#x9635;&#x5947;&#x5F02;&#x503C;&#x662F; <code>[1, 1, 1e-5]</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x4E25;&#x683C;&#x6765;&#x8BF4;&#xFF0C;&#x77E9;&#x9635;&#x771F;&#x6B63;&#x7684;&#x79E9;&#x662F; 2&#xFF0C;&#x800C;&#x7B97;&#x51FA;&#x6765;&#x7684;&#x79E9;&#x662F; 3&#xFF0C;&#x6240;&#x4EE5;<code>matrix_rank</code> &#x5F15;&#x5165;&#x4E86;&#x4E00;&#x4E2A;&#x9608;&#x503C;&#xFF0C;&#x5F53;&#x5947;&#x5F02;&#x503C;&#x5C0F;&#x4E8E;&#x8FD9;&#x4E2A;&#x9608;&#x503C;&#x65F6;&#x770B;&#x4F5C;&#x4E3A; 0&#x3002;</p>
 <p>&#x5176;&#x5B9E; <code>matrix_rank</code> &#x5F97;&#x5230;&#x7684;&#x79E9; k &#x5176;&#x5B9E;&#x548C;&#x4E3B;&#x6210;&#x5206;&#x5206;&#x6790;&#x5F97;&#x51FA;&#x6765;&#x7684;&#x524D; k &#x5947;&#x5F02;&#x503C;&#xFF08;&#x7279;&#x5F81;&#x503C;&#xFF09;&#x4E00;&#x4E2A;&#x9053;&#x7406;&#xFF0C;&#x90FD;&#x662F;&#x5FFD;&#x7565;&#x975E;&#x5E38;&#x5C0F;&#x7684;&#x5947;&#x5F02;&#x503C;&#xFF0C;&#x53D6;&#x5269;&#x4E0B;&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x5947;&#x5F02;&#x503C;&#x3002;</p>
 <p>&#x6240;&#x4EE5;&#x5728;&#x77E9;&#x9635;A&#x6BD4;&#x8F83;&#x5927;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x679C;A&#x771F;&#x6B63;&#x7684;&#x5947;&#x5F02;&#x503C;&#x5C31;&#x6BD4;&#x8F83;&#x5C0F;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x88AB; <code>matrix_rank</code> &#x7684;&#x9608;&#x503C;&#x8FC7;&#x8651;&#x6389;&#xFF0C;&#x8FD9;&#x624D;&#x8BA9;  <code>matrix_rank</code> &#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x548C;&#x771F;&#x6B63;&#x7684;&#x79E9;&#x4E0D;&#x4E00;&#x6837;&#x3002;</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/06/matrix-rank%E7%BB%93%E6%9E%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E8%A7%A3%E9%87%8A/" data-id="cl8wza9fy00002wu01tc6ece2" data-title="matrix_rank结果异常的解释" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/06/matrix-rank%E7%BB%93%E6%9E%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E8%A7%A3%E9%87%8A/" data-id="cl8wzcoug0004j8u004mr60f3" data-title="matrix_rank结果异常的解释" class="article-share-link">Share</a>
       
       
       
@@ -161,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/28/%E6%96%B0%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE/" data-id="cl8wza9g300012wu02sawhwy1" data-title="新建springboot项目" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/28/%E6%96%B0%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE/" data-id="cl8wzcoud0002j8u09jas6vpm" data-title="新建springboot项目" class="article-share-link">Share</a>
       
       
       
@@ -250,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/" data-id="cl8k8zbvc00017wu05qlo397e" data-title="hexo配合github搭建博客指南" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/" data-id="cl8wzcoub0001j8u02lnu8vzh" data-title="hexo配合github搭建博客指南" class="article-share-link">Share</a>
       
       
       
@@ -303,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/24/hello-world/" data-id="cl8k8zbv700007wu08ehs1bzx" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/24/hello-world/" data-id="cl8wzcou60000j8u057qn386q" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
