@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-10-11T08:25:26.666Z</updated>
+  <updated>2022-10-11T08:29:33.224Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,18 +21,15 @@
     <link href="http://example.com/2022/10/11/alias%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D/"/>
     <id>http://example.com/2022/10/11/alias%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D/</id>
     <published>2022-10-11T08:20:10.000Z</published>
-    <updated>2022-10-11T08:25:26.666Z</updated>
+    <updated>2022-10-11T08:29:33.224Z</updated>
     
-    <content type="html"><![CDATA[<hr><p>typora-root-url: Adam</p><hr><p>linux alias &#x8BBE;&#x7F6E;&#x522B;&#x540D;&#xFF1A;</p><p><code>vim ~/.bashrc</code> &#xFF0C;&#x6309; i &#x8FDB;&#x5165;&#x63D2;&#x5165;&#x6A21;&#x5F0F;&#xFF1B;</p><p>&#x5728;&#x7ED3;&#x5C3E;&#x52A0;&#x5165;&#xFF1A;</p><p><code>alias &#x81EA;&#x5B9A;&#x4E49;&#x540D;&#x79F0;=&apos;&#x7EC8;&#x7AEF;&#x547D;&#x4EE4;&apos;</code></p><p>&#x5982;&#xFF1A;</p><p><code>alias n=&apos;nvidia-smi&apos;</code></p><p><code>alias py39=&apos;conda activate py39&apos;</code> &#x8FDB;&#x5165; conda &#x73AF;&#x5883;</p><p><code>alias cdfile=&apos;cd /data/xxx/xxx&apos;</code></p><p><img src="/2022/10/11/alias%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D/20221011162204.png"></p><p>&#x7136;&#x540E; <code>source ~/.bashrc</code> &#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x5DF2;&#x7ECF;&#x8BBE;&#x7F6E;&#x597D;&#x7684;&#x522B;&#x540D;&#x4E86;&#xFF01;</p><p><code>alias</code> &#x53EF;&#x67E5;&#x770B;&#x6240;&#x6709;&#x522B;&#x540D;&#xFF1B;</p><p>&#x53D6;&#x6D88;&#x522B;&#x540D;&#xFF1A;<code>unalias &#x4F60;&#x8BBE;&#x7F6E;&#x7684;&#x522B;&#x540D;</code>&#xFF0C;&#x5982; <code>unalias n</code></p>]]></content>
+    <content type="html"><![CDATA[<p>linux alias &#x8BBE;&#x7F6E;&#x522B;&#x540D;&#xFF1A;</p><p><code>vim ~/.bashrc</code> &#xFF0C;&#x6309; <code>i</code> &#x8FDB;&#x5165;&#x63D2;&#x5165;&#x6A21;&#x5F0F;&#xFF1B;</p><p>&#x5728;&#x7ED3;&#x5C3E;&#x52A0;&#x5165;&#xFF1A;</p><p><code>alias &#x81EA;&#x5B9A;&#x4E49;&#x540D;&#x79F0;=&apos;&#x7EC8;&#x7AEF;&#x547D;&#x4EE4;&apos;</code></p><p>&#x5982;&#xFF1A;</p><p><code>alias n=&apos;nvidia-smi&apos;</code></p><p><code>alias py39=&apos;conda activate py39&apos;</code> &#x8FDB;&#x5165; conda &#x73AF;&#x5883;</p><p><code>alias cdfile=&apos;cd /data/xxx/xxx&apos;</code></p><p><img src="/2022/10/11/alias%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D/20221011162204.png"></p><p>&#x7136;&#x540E; <code>source ~/.bashrc</code> &#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x5DF2;&#x7ECF;&#x8BBE;&#x7F6E;&#x597D;&#x7684;&#x522B;&#x540D;&#x4E86;&#xFF01;</p><p><code>alias</code> &#x53EF;&#x67E5;&#x770B;&#x6240;&#x6709;&#x522B;&#x540D;&#xFF1B;</p><p>&#x53D6;&#x6D88;&#x522B;&#x540D;&#xFF1A;<code>unalias &#x4F60;&#x8BBE;&#x7F6E;&#x7684;&#x522B;&#x540D;</code>&#xFF0C;&#x5982; <code>unalias n</code>.</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;typora-root-url: Adam&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;linux alias &amp;#x8BBE;&amp;#x7F6E;&amp;#x522B;&amp;#x540D;&amp;#xFF1A;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;vim ~/.bashrc&lt;/code&gt; &amp;#xFF0C;&amp;#x</summary>
+    <summary type="html">&lt;p&gt;linux alias &amp;#x8BBE;&amp;#x7F6E;&amp;#x522B;&amp;#x540D;&amp;#xFF1A;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;vim ~/.bashrc&lt;/code&gt; &amp;#xFF0C;&amp;#x6309; &lt;code&gt;i&lt;/code&gt; &amp;#x8FDB;&amp;#x5165;&amp;#</summary>
       
     
     
