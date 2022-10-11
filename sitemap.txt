@@ -1,3 +1,4 @@
+http://example.com/2022/10/11/%E7%BB%88%E7%AB%AF%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/
 http://example.com/2022/10/06/matrix-rank%E7%BB%93%E6%9E%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E8%A7%A3%E9%87%8A/
 http://example.com/2022/09/28/%E6%96%B0%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE/
 http://example.com/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/
@@ -5,3 +6,4 @@ http://example.com/2022/09/24/hello-world/
 http://example.com/
 http://example.com/tags/%E6%95%99%E7%A8%8B/
 http://example.com/tags/python%E5%87%BD%E6%95%B0/
+http://example.com/tags/linux/

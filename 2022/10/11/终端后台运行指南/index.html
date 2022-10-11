@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>终端后台运行指南 | moonzfxs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="nohup nohup &amp;#x82F1;&amp;#x6587;&amp;#x5168;&amp;#x79F0; no hang up&amp;#xFF08;&amp;#x4E0D;&amp;#x6302;&amp;#x8D77;&amp;#xFF09;&amp;#xFF0C;&amp;#x7528;&amp;#x4E8E;&amp;#x5728;&amp;#x7CFB;&amp;#x7EDF;&amp;#x540E;&amp;#x53F0;&amp;#x4E0D;&amp;#x6302;&amp;#x65AD;&amp;#x5730;&amp;#x8FD0;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="终端后台运行指南">
+<meta property="og:url" content="http://example.com/2022/10/11/%E7%BB%88%E7%AB%AF%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="moonzfxs">
+<meta property="og:description" content="nohup nohup &amp;#x82F1;&amp;#x6587;&amp;#x5168;&amp;#x79F0; no hang up&amp;#xFF08;&amp;#x4E0D;&amp;#x6302;&amp;#x8D77;&amp;#xFF09;&amp;#xFF0C;&amp;#x7528;&amp;#x4E8E;&amp;#x5728;&amp;#x7CFB;&amp;#x7EDF;&amp;#x540E;&amp;#x53F0;&amp;#x4E0D;&amp;#x6302;&amp;#x65AD;&amp;#x5730;&amp;#x8FD0;&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-11T02:53:01.000Z">
+<meta property="article:modified_time" content="2022-10-11T02:54:57.502Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="moonzfxs" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">moonzfxs</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-终端后台运行指南" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/11/%E7%BB%88%E7%AB%AF%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/" class="article-date">
+  <time class="dt-published" datetime="2022-10-11T02:53:01.000Z" itemprop="datePublished">2022-10-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      终端后台运行指南
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="nohup"><a href="#nohup" class="headerlink" title="nohup"></a>nohup</h3><blockquote>
+<p><strong>nohup</strong> &#x82F1;&#x6587;&#x5168;&#x79F0; no hang up&#xFF08;&#x4E0D;&#x6302;&#x8D77;&#xFF09;&#xFF0C;&#x7528;&#x4E8E;&#x5728;&#x7CFB;&#x7EDF;&#x540E;&#x53F0;&#x4E0D;&#x6302;&#x65AD;&#x5730;&#x8FD0;&#x884C;&#x547D;&#x4EE4;&#xFF0C;&#x9000;&#x51FA;&#x7EC8;&#x7AEF;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x7A0B;&#x5E8F;&#x7684;&#x8FD0;&#x884C;&#x3002;</p>
+</blockquote>
+<blockquote>
+<p><strong>nohup</strong> &#x547D;&#x4EE4;&#xFF0C;&#x5728;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF08;&#x975E;&#x91CD;&#x5B9A;&#x5411;&#x65F6;&#xFF09;&#xFF0C;&#x4F1A;&#x8F93;&#x51FA;&#x4E00;&#x4E2A;&#x540D;&#x53EB; <code>nohup.out</code> &#x7684;&#x6587;&#x4EF6;&#x5230;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x5982;&#x679C;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x7684; <code>nohup.out</code> &#x6587;&#x4EF6;&#x4E0D;&#x53EF;&#x5199;&#xFF0C;&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;&#x5230; <code>$HOME/nohup.out</code> &#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
+</blockquote>
+<p><strong>&#x8BED;&#x6CD5;&#x683C;&#x5F0F;&#xFF1A;</strong><code>nohup &#x8981;&#x6267;&#x884C;&#x7684;&#x547D;&#x4EE4;</code> &#x5982;&#xFF1A;<code>nohup python main.py</code></p>
+<p><strong>&#x4F5C;&#x7528;&#xFF1A;</strong>&#x5173;&#x95ED; &#x6807;&#x51C6;&#x8F93;&#x5165;&#xFF08;&#x63A7;&#x5236;&#x53F0;&#x65E0;&#x6CD5;&#x8F93;&#x5165;&#xFF09;&#xFF0C;&#x6807;&#x51C6;&#x8F93;&#x51FA; &#x548C; &#x9519;&#x8BEF;&#x4FE1;&#x606F; &#x4FDD;&#x5B58;&#x5230; <code>nohup.out</code> &#x6587;&#x4EF6;&#x91CC;&#x9762;&#xFF0C;&#x5173;&#x95ED;&#x5BA2;&#x6237;&#x7AEF;&#x540E;&#x547D;&#x4EE4;&#x4ECD;&#x7136;&#x4F1A;&#x8FD0;&#x884C;&#x3002;</p>
+<h3 id="amp"><a href="#amp" class="headerlink" title="&amp;"></a>&amp;</h3><p><strong>&#x8BED;&#x6CD5;&#x683C;&#x5F0F;&#xFF1A;</strong> <code>&#x8981;&#x6267;&#x884C;&#x7684;&#x547D;&#x4EE4; &amp;</code> &#x5982;&#xFF1A;<code>python main.py &amp;</code></p>
+<p><strong>&#x4F5C;&#x7528;&#xFF1A;</strong>&#x4E0D;&#x4F1A;&#x5173;&#x95ED;&#x6807;&#x51C6;&#x8F93;&#x5165;&#xFF08;&#x63A7;&#x5236;&#x53F0;&#x53EF;&#x4EE5;&#x8F93;&#x5165;&#xFF09;&#xFF0C;&#x6253;&#x5370;&#x65E5;&#x5FD7;&#x4ECD;&#x7136;&#x5728;&#x7EC8;&#x7AEF;&#xFF0C;&#x4F46;&#x4F1A;&#x4E22;&#x5931; &#x6807;&#x51C6;&#x8F93;&#x51FA; &#x548C; &#x9519;&#x8BEF;&#x4FE1;&#x606F;&#xFF0C;&#x5173;&#x95ED;&#x5BA2;&#x6237;&#x7AEF;&#x540E;&#x547D;&#x4EE4;&#x4F1A;&#x5C31;&#x9A6C;&#x4E0A;&#x505C;&#x6B62;&#x3002;</p>
+<h3 id="nohup-&#x548C;-amp"><a href="#nohup-&#x548C;-amp" class="headerlink" title="nohup &#x548C; &amp;"></a>nohup &#x548C; &amp;</h3><p><strong>&#x6240;&#x4EE5;&#x63A8;&#x8350; nohup &#x548C; &amp; &#x7684;&#x7ED3;&#x5408;&#x4F7F;&#x7528;&#xFF01;&#xFF01;&#xFF01;</strong>&#xFF0C;&#x65E2;&#x53EF;&#x4EE5;&#x5728;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#xFF0C;&#x7EC8;&#x7AEF;&#x8FD8;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x8F93;&#x5165;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x6709;&#x65E5;&#x5FD7;&#x6253;&#x5370;&#xFF0C;&#x800C;&#x4E14;&#x8FD8;&#x53EF;&#x4EE5;&#x968F;&#x610F;&#x5173;&#x95ED;xshell&#x6216;mobaXterm&#x7EC8;&#x7AEF;&#x3002;</p>
+<p><strong>&#x8BED;&#x6CD5;&#x683C;&#x5F0F;&#xFF1A;</strong> <code>nohup python main.py &amp;</code>&#x3002;&#x8FD9;&#x65F6;&#xFF0C;<code>main.py</code>&#x76EE;&#x5F55;&#x4E0B;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;<code>nohup.out</code>&#x6587;&#x4EF6;&#xFF0C;&#x5B58;&#x50A8;&#x4E86;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#x548C;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x3002;</p>
+<h3 id="&#x91CD;&#x5B9A;&#x5411;"><a href="#&#x91CD;&#x5B9A;&#x5411;" class="headerlink" title="&#x91CD;&#x5B9A;&#x5411;"></a>&#x91CD;&#x5B9A;&#x5411;</h3><p><code>nohup python train.py &gt; train.log 2&gt;&amp;1 &amp;</code> </p>
+<p><strong>&#x4F5C;&#x7528;&#xFF1A;</strong>&#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x5C06; <code>python train.py</code> &#x7684; &#x6253;&#x5370;&#x8F93;&#x51FA; &#x91CD;&#x5B9A;&#x5411;&#x5230;&#x548C; <code>train.py</code>&#x540C;&#x76EE;&#x5F55;&#x4E0B;&#x7684; <code>train.log</code> &#xFF08;&#x5199;&#x6210;<code>train.txt</code> &#x4E5F;&#x53EF;&#x4EE5;&#xFF09;&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x540C;&#x65F6;<strong>&#x7A0B;&#x5E8F;&#x5728;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#xFF0C;&#x7EC8;&#x7AEF;&#x4E0D;&#x4F1A;&#x6253;&#x5370;&#xFF0C;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x8F93;&#x5165;&#xFF0C;&#x4E14;&#x53EF;&#x4EE5;&#x5173;&#x95ED;&#x7EC8;&#x7AEF;</strong>&#x3002;</p>
+<p>&gt; file &#x8868;&#x793A;&#x5C06; <strong>&#x6807;&#x51C6;&#x8F93;&#x51FA;</strong> &#x8F93;&#x51FA;&#x5230; file&#x6587;&#x4EF6;&#xFF1B;</p>
+<p>1&#xFF09;<code>&gt; train.log</code> &#x89E3;&#x91CA; &#xFF1A;</p>
+<p>&#x5C06; <code>python train.py</code>&#x8FD0;&#x884C;&#x7684;&#x65E5;&#x5FD7; &#x91CD;&#x5B9A;&#x5411; &#x5199;&#x5165;&#x5230; <code>train.log</code>&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5373;&#x8F93;&#x51FA;&#x5185;&#x5BB9; &#x4E0D;&#x6253;&#x5370;&#x5230;&#x5C4F;&#x5E55;&#x4E0A;&#xFF0C;&#x800C;&#x662F;&#x8F93;&#x51FA;&#x5230; <code>train.log</code>&#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
+<p>2&#xFF09;<code>2&gt;&amp;1</code> &#x89E3;&#x91CA;&#xFF1A;</p>
+<p>&#x5C06;&#x6807;&#x51C6;&#x9519;&#x8BEF; 2 &#x91CD;&#x5B9A;&#x5411;&#x5230;&#x6807;&#x51C6;&#x8F93;&#x51FA; &amp;1 &#xFF0C;&#x6807;&#x51C6;&#x8F93;&#x51FA; &amp;1 &#x518D;&#x88AB;&#x91CD;&#x5B9A;&#x5411;&#x8F93;&#x5165;&#x5230;<code> train.log</code> &#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
+<blockquote>
+<p>0 &#x2013; stdin (standard input&#xFF0C;&#x6807;&#x51C6;&#x8F93;&#x5165;)</p>
+<p>1 &#x2013; stdout (standard output&#xFF0C;&#x6807;&#x51C6;&#x8F93;&#x51FA;)</p>
+<p>2 &#x2013; stderr (standard error&#xFF0C;&#x6807;&#x51C6;&#x9519;&#x8BEF;&#x8F93;&#x51FA;)</p>
+</blockquote>
+<p>3&#xFF09;<code>&gt; train.log 2&gt;&amp;1</code> &#x89E3;&#x91CA;&#xFF1A;</p>
+<p>&#x5C06; <strong>&#x6807;&#x51C6;&#x9519;&#x8BEF;</strong> &#x91CD;&#x5B9A;&#x5411;&#x5230; <strong>&#x6807;&#x51C6;&#x8F93;&#x51FA;</strong>&#xFF0C;<strong>&#x6807;&#x51C6;&#x8F93;&#x51FA;</strong> &#x518D;&#x91CD;&#x5B9A;&#x5411;&#x5230; <code>train.log</code> &#x4E2D;&#xFF0C;&#x5373;&#x6807;&#x51C6;&#x9519;&#x8BEF;&#x548C;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#x90FD;&#x8BB0;&#x5F55;&#x5728;&#x4E86;<code>train.log</code>&#x3002;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/11/%E7%BB%88%E7%AB%AF%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/" data-id="cl93m21p50000t4u070nl5ksd" data-title="终端后台运行指南" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/10/06/matrix-rank%E7%BB%93%E6%9E%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E8%A7%A3%E9%87%8A/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">pytorch中torch.linalg.matrix_rank结果异常的解释</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%87%BD%E6%95%B0/" rel="tag">python函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%87%BD%E6%95%B0/" style="font-size: 10px;">python函数</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 20px;">教程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/11/%E7%BB%88%E7%AB%AF%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/">终端后台运行指南</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/06/matrix-rank%E7%BB%93%E6%9E%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E8%A7%A3%E9%87%8A/">pytorch中torch.linalg.matrix_rank结果异常的解释</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/28/%E6%96%B0%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE/">新建springboot项目</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/">hexo配合github搭建博客指南</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/24/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
