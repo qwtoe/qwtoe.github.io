@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>回溯算法一 | moonzfxs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="&amp;#x56DE;&amp;#x6EAF;&amp;#x7B97;&amp;#x6CD5;&amp;#x548C; DFS &amp;#x7B97;&amp;#x6CD5;&amp;#x7684;&amp;#x7EC6;&amp;#x5FAE;&amp;#x5DEE;&amp;#x522B;&amp;#x662F;&amp;#xFF1A;&amp;#x56DE;&amp;#x6EAF;&amp;#x7B97;&amp;#x6CD5;&amp;#x662F;&amp;#x5728;&amp;#x904D;&amp;#x5386;&amp;#x300C;&amp;#x6811;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回溯算法一">
+<meta property="og:url" content="http://example.com/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="moonzfxs">
+<meta property="og:description" content="&amp;#x56DE;&amp;#x6EAF;&amp;#x7B97;&amp;#x6CD5;&amp;#x548C; DFS &amp;#x7B97;&amp;#x6CD5;&amp;#x7684;&amp;#x7EC6;&amp;#x5FAE;&amp;#x5DEE;&amp;#x522B;&amp;#x662F;&amp;#xFF1A;&amp;#x56DE;&amp;#x6EAF;&amp;#x7B97;&amp;#x6CD5;&amp;#x662F;&amp;#x5728;&amp;#x904D;&amp;#x5386;&amp;#x300C;&amp;#x6811;&amp;#x">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/20221011173151.png">
+<meta property="og:image" content="http://example.com/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/20221012124549.png">
+<meta property="og:image" content="http://example.com/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/1666415989449.jpg">
+<meta property="og:image" content="http://example.com/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/1666416089587.jpg">
+<meta property="og:image" content="http://example.com/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/1666416132283.jpg">
+<meta property="og:image" content="http://example.com/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/1666417151112.jpg">
+<meta property="article:published_time" content="2022-10-11T09:06:16.000Z">
+<meta property="article:modified_time" content="2022-10-22T12:58:40.960Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="基础算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/20221011173151.png">
+  
+    <link rel="alternate" href="/atom.xml" title="moonzfxs" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">moonzfxs</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-回溯算法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2022-10-11T09:06:16.000Z" itemprop="datePublished">2022-10-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      回溯算法一
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>&#x56DE;&#x6EAF;&#x7B97;&#x6CD5;&#x548C; DFS &#x7B97;&#x6CD5;&#x7684;&#x7EC6;&#x5FAE;&#x5DEE;&#x522B;&#x662F;&#xFF1A;<strong>&#x56DE;&#x6EAF;&#x7B97;&#x6CD5;&#x662F;&#x5728;&#x904D;&#x5386;&#x300C;&#x6811;&#x679D;&#x300D;&#xFF0C;DFS &#x7B97;&#x6CD5;&#x662F;&#x5728;&#x904D;&#x5386;&#x300C;&#x8282;&#x70B9;&#x300D;&#x3002;</strong></p>
+<p>1&#x3001;&#x8DEF;&#x5F84;&#xFF1A;&#x4E5F;&#x5C31;&#x662F;&#x5DF2;&#x7ECF;&#x505A;&#x51FA;&#x7684;&#x9009;&#x62E9;&#x3002;</p>
+<p>2&#x3001;&#x9009;&#x62E9;&#x5217;&#x8868;&#xFF1A;&#x4E5F;&#x5C31;&#x662F;&#x4F60;&#x5F53;&#x524D;&#x53EF;&#x4EE5;&#x505A;&#x7684;&#x9009;&#x62E9;&#x3002;</p>
+<p>3&#x3001;&#x7ED3;&#x675F;&#x6761;&#x4EF6;&#xFF1A;&#x4E5F;&#x5C31;&#x662F;&#x5230;&#x8FBE;&#x51B3;&#x7B56;&#x6811;&#x5E95;&#x5C42;&#xFF0C;&#x65E0;&#x6CD5;&#x518D;&#x505A;&#x9009;&#x62E9;&#x7684;&#x6761;&#x4EF6;&#x3002;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line">def <span class="built_in">backtrack</span>(&#x8DEF;&#x5F84;, &#x9009;&#x62E9;&#x5217;&#x8868;){</span><br><span class="line">    <span class="keyword">if</span> &#x6EE1;&#x8DB3;&#x7ED3;&#x675F;&#x6761;&#x4EF6;{</span><br><span class="line">        result <span class="built_in">add</span>(&#x8DEF;&#x5F84;)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">for</span> &#x9009;&#x62E9; in &#x9009;&#x62E9;&#x5217;&#x8868;{</span><br><span class="line">        &#x505A;&#x9009;&#x62E9;</span><br><span class="line">        <span class="built_in">backtrack</span>(&#x8DEF;&#x5F84;,&#x9009;&#x62E9;&#x5217;&#x8868;)</span><br><span class="line">        &#x64A4;&#x9500;&#x9009;&#x62E9;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/20221011173151.png"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/permutations/">46. &#x5168;&#x6392;&#x5217; - &#x529B;&#x6263;&#xFF08;LeetCode&#xFF09;</a>&#xFF1A;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#x8F93;&#x5165;&#xFF1A;nums = [1,2,3]</span></span><br><span class="line"><span class="comment">// &#x8F93;&#x51FA;&#xFF1A;[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]</span></span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">func</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums){</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">visited</span><span class="params">(nums.size())</span></span>;  <span class="comment">// &#x9ED8;&#x8BA4;&#x4E3A;0</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; track;</span><br><span class="line">    <span class="built_in">backtrack</span>(nums, track, visited);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">backtrack</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, vector&lt;<span class="type">int</span>&gt; track, vector&lt;<span class="type">int</span>&gt; visited)</span></span>{</span><br><span class="line">    <span class="keyword">if</span>(track.<span class="built_in">size</span>() == nums.<span class="built_in">size</span>()){</span><br><span class="line">        res.<span class="built_in">push_back</span>(track);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++){</span><br><span class="line">        <span class="keyword">if</span>(visited[i]){</span><br><span class="line">            <span class="keyword">continue</span>;  <span class="comment">// &#x6392;&#x9664;&#x5DF2;&#x7ECF;&#x5728; track &#x4E2D;&#x7684;&#x5143;&#x7D20;</span></span><br><span class="line">        }</span><br><span class="line">        track.<span class="built_in">push_back</span>(nums[i]);  <span class="comment">// &#x505A;&#x9009;&#x62E9;</span></span><br><span class="line">        visited[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">backtrack</span>(nums, track, visted);</span><br><span class="line">        track.<span class="built_in">pop_back</span>(nums[i]);  <span class="comment">// &#x64A4;&#x9500;&#x9009;&#x62E9;</span></span><br><span class="line">        visited[i] = <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/n-queens/">51. N &#x7687;&#x540E; - &#x529B;&#x6263;&#xFF08;LeetCode&#xFF09;</a>&#xFF1A;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;string&gt;&gt; res;</span><br><span class="line">vector&lt;vector&lt;string&gt;&gt; <span class="built_in">func</span>(<span class="type">int</span> n){</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">board</span><span class="params">(n, string(n, <span class="string">&apos;.&apos;</span>))</span></span>;</span><br><span class="line">    <span class="built_in">backtrack</span>(board, <span class="number">0</span>); <span class="comment">//&#x8DEF;&#x5F84; &#x9009;&#x62E9;&#x5217;&#x8868;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"><span class="comment">// &#x8DEF;&#x5F84;&#xFF1A;board &#x4E2D;&#x5C0F;&#x4E8E; row &#x7684;&#x90A3;&#x4E9B;&#x884C;&#x90FD;&#x5DF2;&#x7ECF;&#x6210;&#x529F;&#x653E;&#x7F6E;&#x4E86;&#x7687;&#x540E;</span></span><br><span class="line"><span class="comment">// &#x9009;&#x62E9;&#x5217;&#x8868;&#xFF1A;&#x7B2C; row &#x884C;&#x7684;&#x6240;&#x6709;&#x5217;&#x90FD;&#x662F;&#x653E;&#x7F6E;&#x7687;&#x540E;&#x7684;&#x9009;&#x62E9;</span></span><br><span class="line"><span class="comment">// &#x7ED3;&#x675F;&#x6761;&#x4EF6;&#xFF1A;row &#x8D85;&#x8FC7; board &#x7684;&#x6700;&#x540E;&#x4E00;&#x884C;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">backtrack</span><span class="params">(vector&lt;string&gt;&amp; board, <span class="type">int</span> row)</span></span>{<span class="comment">//&#x8DEF;&#x5F84; &#x9009;&#x62E9;&#x5217;&#x8868;</span></span><br><span class="line">    <span class="keyword">if</span>(row == board.<span class="built_in">size</span>()){  <span class="comment">// row == n</span></span><br><span class="line">        res.<span class="built_in">push_back</span>(board);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="type">int</span> n = board[row].<span class="built_in">size</span>();  <span class="comment">// n</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> col=<span class="number">0</span>; col &lt; n; col++){</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">isValid</span>(board, row, col)){</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        }</span><br><span class="line">        board[row][col] = <span class="string">&apos;Q&apos;</span>;</span><br><span class="line">        <span class="built_in">backtrack</span>(board, row + <span class="number">1</span>);</span><br><span class="line">        board[row][col] = <span class="string">&apos;.&apos;</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &#x662F;&#x5426;&#x53EF;&#x4EE5;&#x5728; board[row][col] &#x653E;&#x7F6E;&#x7687;&#x540E;&#xFF1F; */</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(vector&lt;string&gt;&amp; board, <span class="type">int</span> row, <span class="type">int</span> col)</span> </span>{</span><br><span class="line">    <span class="type">int</span> n = board.<span class="built_in">size</span>();</span><br><span class="line">    <span class="comment">// &#x68C0;&#x67E5;&#x5217;&#x662F;&#x5426;&#x6709;&#x7687;&#x540E;&#x4E92;&#x76F8;&#x51B2;&#x7A81;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= row; i++) {</span><br><span class="line">        <span class="keyword">if</span> (board[i][col] == <span class="string">&apos;Q&apos;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// &#x68C0;&#x67E5;&#x53F3;&#x4E0A;&#x65B9;&#x662F;&#x5426;&#x6709;&#x7687;&#x540E;&#x4E92;&#x76F8;&#x51B2;&#x7A81;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = row - <span class="number">1</span>, j = col + <span class="number">1</span>; </span><br><span class="line">            i &gt;= <span class="number">0</span> &amp;&amp; j &lt; n; i--, j++) {</span><br><span class="line">        <span class="keyword">if</span> (board[i][j] == <span class="string">&apos;Q&apos;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// &#x68C0;&#x67E5;&#x5DE6;&#x4E0A;&#x65B9;&#x662F;&#x5426;&#x6709;&#x7687;&#x540E;&#x4E92;&#x76F8;&#x51B2;&#x7A81;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = row - <span class="number">1</span>, j = col - <span class="number">1</span>;</span><br><span class="line">            i &gt;= <span class="number">0</span> &amp;&amp; j &gt;= <span class="number">0</span>; i--, j--) {</span><br><span class="line">        <span class="keyword">if</span> (board[i][j] == <span class="string">&apos;Q&apos;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>&#x53EF;&#x89C6;&#x56FE;&#xFF1A;</p>
+<p><img src="/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/20221012124549.png" alt="20221012124549"></p>
+<h3 id="&#x6392;&#x5217;&#x3001;&#x7EC4;&#x5408;&#x3001;&#x5B50;&#x96C6;"><a href="#&#x6392;&#x5217;&#x3001;&#x7EC4;&#x5408;&#x3001;&#x5B50;&#x96C6;" class="headerlink" title="&#x6392;&#x5217;&#x3001;&#x7EC4;&#x5408;&#x3001;&#x5B50;&#x96C6;"></a>&#x6392;&#x5217;&#x3001;&#x7EC4;&#x5408;&#x3001;&#x5B50;&#x96C6;</h3><p>from <a target="_blank" rel="noopener" href="https://labuladong.github.io/algo/4/31/107/">here</a>.</p>
+<h4 id="&#x5F62;&#x5F0F;&#x4E00;&#x3001;&#x5143;&#x7D20;&#x65E0;&#x91CD;&#x4E0D;&#x53EF;&#x590D;&#x9009;"><a href="#&#x5F62;&#x5F0F;&#x4E00;&#x3001;&#x5143;&#x7D20;&#x65E0;&#x91CD;&#x4E0D;&#x53EF;&#x590D;&#x9009;" class="headerlink" title="&#x5F62;&#x5F0F;&#x4E00;&#x3001;&#x5143;&#x7D20;&#x65E0;&#x91CD;&#x4E0D;&#x53EF;&#x590D;&#x9009;"></a>&#x5F62;&#x5F0F;&#x4E00;&#x3001;&#x5143;&#x7D20;&#x65E0;&#x91CD;&#x4E0D;&#x53EF;&#x590D;&#x9009;</h4><p><strong>&#x5373; <code>nums</code> &#x4E2D;&#x7684;&#x5143;&#x7D20;&#x90FD;&#x662F;&#x552F;&#x4E00;&#x7684;&#xFF0C;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x6700;&#x591A;&#x53EA;&#x80FD;&#x88AB;&#x4F7F;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x6700;&#x57FA;&#x672C;&#x7684;&#x5F62;&#x5F0F;</strong>&#x3002;</p>
+<p>&#x4EE5;&#x7EC4;&#x5408;&#x4E3A;&#x4F8B;&#xFF0C;&#x5982;&#x679C;&#x8F93;&#x5165; <code>nums = [2,3,6,7]</code>&#xFF0C;&#x548C;&#x4E3A; 7 &#x7684;&#x7EC4;&#x5408;&#x5E94;&#x8BE5;&#x53EA;&#x6709; <code>[7]</code></p>
+<p>&#x5B50;&#x96C6;</p>
+<p><img src="/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/1666415989449.jpg"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subsets/">78. &#x5B50;&#x96C6; - &#x529B;&#x6263;&#xFF08;LeetCode&#xFF09;</a>&#xFF1B;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; track;</span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">subsets</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums) {</span><br><span class="line">    <span class="built_in">backtrack</span>(nums,track, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">backtrack</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums,vector&lt;<span class="type">int</span>&gt; track, <span class="type">int</span> begin)</span> </span>{</span><br><span class="line">    res.<span class="built_in">push_back</span>(track);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = begin; i &lt; nums.<span class="built_in">size</span>(); i++) {</span><br><span class="line">        track.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        <span class="built_in">backtrack</span>(nums, track, i+<span class="number">1</span>);</span><br><span class="line">        track.<span class="built_in">pop_back</span>();</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">[1,2,3]</span></span><br><span class="line"><span class="comment">[[],[1],[1,2],[1,2,3],[1,3],[2],[2,3],[3]]</span></span><br><span class="line"><span class="comment">1 -&gt; 1,2 -&gt; 1,2,3 -&gt; pop -&gt; pop</span></span><br><span class="line"><span class="comment">	{for {2,3}}</span></span><br><span class="line"><span class="comment">  -&gt; 1,3 -&gt; pop</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>&#x7EC4;&#x5408;</p>
+<p><img src="/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/1666416089587.jpg"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combinations/">77. &#x7EC4;&#x5408; - &#x529B;&#x6263;&#xFF08;LeetCode&#xFF09;</a>&#xFF1B;</p>
+<p>&#x6392;&#x5217;</p>
+<p><img src="/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/1666416132283.jpg"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/permutations/">46. &#x5168;&#x6392;&#x5217; - &#x529B;&#x6263;&#xFF08;LeetCode&#xFF09;</a>&#xFF1B;</p>
+<h4 id="&#x5F62;&#x5F0F;&#x4E8C;&#x3001;&#x5143;&#x7D20;&#x53EF;&#x91CD;&#x4E0D;&#x53EF;&#x590D;&#x9009;"><a href="#&#x5F62;&#x5F0F;&#x4E8C;&#x3001;&#x5143;&#x7D20;&#x53EF;&#x91CD;&#x4E0D;&#x53EF;&#x590D;&#x9009;" class="headerlink" title="&#x5F62;&#x5F0F;&#x4E8C;&#x3001;&#x5143;&#x7D20;&#x53EF;&#x91CD;&#x4E0D;&#x53EF;&#x590D;&#x9009;"></a>&#x5F62;&#x5F0F;&#x4E8C;&#x3001;&#x5143;&#x7D20;&#x53EF;&#x91CD;&#x4E0D;&#x53EF;&#x590D;&#x9009;</h4><p><strong>&#x5373; <code>nums</code> &#x4E2D;&#x7684;&#x5143;&#x7D20;&#x53EF;&#x4EE5;&#x5B58;&#x5728;&#x91CD;&#x590D;&#xFF0C;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x6700;&#x591A;&#x53EA;&#x80FD;&#x88AB;&#x4F7F;&#x7528;&#x4E00;&#x6B21;</strong>&#x3002;</p>
+<p>&#x4EE5;&#x7EC4;&#x5408;&#x4E3A;&#x4F8B;&#xFF0C;&#x5982;&#x679C;&#x8F93;&#x5165; <code>nums = [2,5,2,1,2]</code>&#xFF0C;&#x548C;&#x4E3A; 7 &#x7684;&#x7EC4;&#x5408;&#x5E94;&#x8BE5;&#x6709;&#x4E24;&#x79CD; <code>[2,2,2,1]</code> &#x548C; <code>[5,2]</code>&#x3002;</p>
+<p>&#x5B50;&#x96C6;&#x3001;&#x7EC4;&#x5408;</p>
+<p><strong>&#x9700;&#x8981;&#x5148;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#xFF0C;&#x8BA9;&#x76F8;&#x540C;&#x7684;&#x5143;&#x7D20;&#x9760;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x5982;&#x679C;&#x53D1;&#x73B0; <code>nums[i] == nums[i-1]</code>&#xFF0C;&#x5219;&#x8DF3;&#x8FC7;</strong>&#xFF1A;</p>
+<p><img src="/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/1666417151112.jpg"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subsets-ii/">90. &#x5B50;&#x96C6; II - &#x529B;&#x6263;&#xFF08;LeetCode&#xFF09;</a>&#xFF1B;</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum-ii/">40. &#x7EC4;&#x5408;&#x603B;&#x548C; II - &#x529B;&#x6263;&#xFF08;LeetCode&#xFF09;</a>&#xFF1B;</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sjJUc/">&#x5251;&#x6307; Offer II 082. &#x542B;&#x6709;&#x91CD;&#x590D;&#x5143;&#x7D20;&#x96C6;&#x5408;&#x7684;&#x7EC4;&#x5408; - &#x529B;&#x6263;&#xFF08;LeetCode&#xFF09;</a>;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = begin; i &lt; candidates.<span class="built_in">size</span>(); i++){</span><br><span class="line">    <span class="comment">// i &gt; 0 &#x65F6;&#xFF0C;&#x6CA1;&#x6709;116</span></span><br><span class="line">    <span class="keyword">if</span> (i &gt; begin &amp;&amp; candidates[i] == candidates[i<span class="number">-1</span>]) {</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    }</span><br><span class="line">    track.<span class="built_in">push_back</span>(candidates[i]);</span><br><span class="line">    ssum += candidates[i];</span><br><span class="line">    <span class="built_in">backtrack</span>(candidates, target, track, i + <span class="number">1</span>);</span><br><span class="line">    track.<span class="built_in">pop_back</span>();</span><br><span class="line">    ssum -= candidates[i];</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>&#x6392;&#x5217;</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/permutations-ii/">47. &#x5168;&#x6392;&#x5217; II - &#x529B;&#x6263;&#xFF08;LeetCode&#xFF09;</a>&#xFF1B;</p>
+<p>&#x6BD4;&#x5982;&#x8F93;&#x5165; <code>nums = [1,2,2]</code>&#xFF0C;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#xFF1A;<code>[ [1,2,2],[2,1,2],[2,2,1] ]</code>&#x3002;12</p>
+<h4 id="&#x5F62;&#x5F0F;&#x4E09;&#x3001;&#x5143;&#x7D20;&#x65E0;&#x91CD;&#x53EF;&#x590D;&#x9009;"><a href="#&#x5F62;&#x5F0F;&#x4E09;&#x3001;&#x5143;&#x7D20;&#x65E0;&#x91CD;&#x53EF;&#x590D;&#x9009;" class="headerlink" title="&#x5F62;&#x5F0F;&#x4E09;&#x3001;&#x5143;&#x7D20;&#x65E0;&#x91CD;&#x53EF;&#x590D;&#x9009;"></a>&#x5F62;&#x5F0F;&#x4E09;&#x3001;&#x5143;&#x7D20;&#x65E0;&#x91CD;&#x53EF;&#x590D;&#x9009;</h4><p><strong>&#x5373; <code>nums</code> &#x4E2D;&#x7684;&#x5143;&#x7D20;&#x90FD;&#x662F;&#x552F;&#x4E00;&#x7684;&#xFF0C;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x53EF;&#x4EE5;&#x88AB;&#x4F7F;&#x7528;&#x82E5;&#x5E72;&#x6B21;</strong>&#x3002;</p>
+<p>&#x4EE5;&#x7EC4;&#x5408;&#x4E3A;&#x4F8B;&#xFF0C;&#x5982;&#x679C;&#x8F93;&#x5165; <code>nums = [2,3,6,7]</code>&#xFF0C;&#x548C;&#x4E3A; 7 &#x7684;&#x7EC4;&#x5408;&#x5E94;&#x8BE5;&#x6709;&#x4E24;&#x79CD; <code>[2,2,3]</code> &#x548C; <code>[7]</code>&#x3002;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" data-id="cla2hk7yr0003ycu04881fdnh" data-title="回溯算法一" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="tag">基础算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/10/13/git/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          git基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/10/11/alias%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">alias设置别名</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%87%BD%E6%95%B0/" rel="tag">python函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="tag">基础算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/python%E5%87%BD%E6%95%B0/" style="font-size: 10px;">python函数</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" style="font-size: 10px;">基础算法</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 20px;">教程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/11/04/Server/">Server</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/13/git/">git基础</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/">回溯算法一</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/11/alias%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D/">alias设置别名</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/11/%E7%BB%88%E7%AB%AF%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/">终端后台运行指南</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
