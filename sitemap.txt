@@ -1,3 +1,4 @@
+http://example.com/2023/05/28/Redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/
 http://example.com/2022/09/24/hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/
 http://example.com/2022/10/13/git/
 http://example.com/2022/11/10/github%E9%85%8D%E7%BD%AEssh/
