@@ -91,10 +91,10 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>前提：安装好 <code>node.js</code> 和git</p>
+        <p><strong>前提</strong>：安装好 <code>node.js</code> 和 git</p>
 <p>1、安装 <code>hexo</code>： <code>npm install -g hexo-cli</code></p>
 <p>2、在一个<strong>空文件夹</strong>下创建 hexo 博客的目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;新建文件夹&gt;</span><br><span class="line">hexo init  <span class="comment"># 初始化，将github的hexo拉到本地</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;新建文件夹&gt;</span><br><span class="line">hexo init  <span class="comment"># 初始化，将 github 的 hexo 拉到本地</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
 <p>随后，<code>hexo -v</code> 即可显示 hexo 各种依赖的版本信息。如：</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo: 7.1.1</span><br><span class="line">hexo-cli: 4.3.1        </span><br><span class="line">os: win32 10.0.19045   </span><br><span class="line">node: 20.10.0</span><br></pre></td></tr></table></figure>
@@ -111,7 +111,10 @@
 <p><img src="https://moonpic.oss-cn-beijing.aliyuncs.com/tf-feb/202404151027906.png"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  <span class="comment"># hexo cl  </span></span><br><span class="line">hexo generate  <span class="comment"># hexo g</span></span><br><span class="line"><span class="comment"># 第一次deploy之前需要 npm install hexo-deployer-git --save</span></span><br><span class="line">hexo deploy  <span class="comment"># hexo d</span></span><br></pre></td></tr></table></figure>
 
+<p>可以在 github 仓库的右侧 Deployments 看到部署情况：</p>
+<p><img src="https://moonpic.oss-cn-beijing.aliyuncs.com/tf-feb/202404151351664.png"></p>
 <p>完成！然后就可以在 <code>username.github.io</code> 访问你自己的博客了。</p>
+<p>部署可能要花点时间，所以页面显示需要等一会。</p>
 <h1 align="center"> 附录 </h1>
 
 <p>1、hexo 文件目录结构</p>
@@ -121,12 +124,18 @@
 <p><code>_config.yml</code> 是博客全局配置文件；</p>
 <p>2、不需要在仓库新建的时候创建 <code>README</code> ，在本地 <code>source</code> 目录下创建一个 <code>README</code> 即可，自动展示在 github 仓库中。</p>
 <p>并且在 <code>_config.yml</code> 中设置 <code>skip_render: README.md</code> 让 md 文件不被转换成 HTML</p>
-<p>2024-04-15 13:46</p>
+<h1 align="center"> TO DO </h1>
+
+<ul>
+<li><input disabled="" type="checkbox"> source 一级文件目录变成多级文件目录</li>
+</ul>
+<hr>
+<p>End.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/15/hexo%E5%8D%9A%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/" data-id="clv0j9jfl0000pcuoeoe433nz" data-title="hexo博客小白搭建指南" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/15/hexo%E5%8D%9A%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/" data-id="clv0js8mu0003twuo0v2z0582" data-title="hexo博客小白搭建指南" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
