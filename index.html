@@ -69,6 +69,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-DockerDesktop改变默认安装路径" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/16/DockerDesktop%E6%94%B9%E5%8F%98%E9%BB%98%E8%AE%A4%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84/" class="article-date">
+  <time class="dt-published" datetime="2024-04-16T13:27:13.000Z" itemprop="datePublished">2024-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/16/DockerDesktop%E6%94%B9%E5%8F%98%E9%BB%98%E8%AE%A4%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84/">DockerDesktop改变默认安装路径</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Docker Desktop for Windows 下载链接：<a target="_blank" rel="noopener" href="https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe">https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe</a></p>
+<p>双击 <code>Docker Desktop Installer.exe</code> 的话，默认是安装在 <code>C:\Program Files\Docker\Docker</code> 。</p>
+<p>安装过程没有选择路径这一选项，所以如果想安装到其他盘，有以下方法：</p>
+<p>1、如果还没有安装 <code>Docker Desktop</code> ，以管理员身份打开 cmd，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Program Files\Docker&quot;</span> <span class="string">&quot;E:\Docker&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个命令的作用是将 <code>&quot;C:\Program Files\Docker&quot;</code> 目录创建为一个符号链接，链接到 <code>&quot;E:\Docker&quot;</code> 目录。这样，当你访问 “C:\Program Files\Docker” 目录时，实际上会进入到 <code>&quot;E:\Docker&quot;</code> 目录，两个目录之间共享相同的内容。</p>
+<br>
+
+<p>2、如果以及安装好了 <code>Docker Desktop</code>，先在任务管理器中停掉 docker ，再重复上面的 cmd 命令。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/04/16/DockerDesktop%E6%94%B9%E5%8F%98%E9%BB%98%E8%AE%A4%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84/" data-id="clv2fgoth0000dwuoa3zt7ni4" data-title="DockerDesktop改变默认安装路径" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Linux中使用alias设置别名" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/10/11/Linux%E4%B8%AD%E4%BD%BF%E7%94%A8alias%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D/" class="article-date">
@@ -297,7 +347,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 10px;">教程</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 10px;">教程</a>
     </div>
   </div>
 
@@ -306,7 +356,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
     </div>
   </div>
 
@@ -317,6 +367,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/04/16/DockerDesktop%E6%94%B9%E5%8F%98%E9%BB%98%E8%AE%A4%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84/">DockerDesktop改变默认安装路径</a>
+          </li>
         
           <li>
             <a href="/2022/10/11/Linux%E4%B8%AD%E4%BD%BF%E7%94%A8alias%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D/">Linux中使用alias设置别名</a>
