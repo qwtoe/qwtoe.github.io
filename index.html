@@ -69,6 +69,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-docker常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/16/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2024-04-16T15:35:06.000Z" itemprop="datePublished">2024-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/16/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">docker常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>镜像（Image）：</p>
+<ul>
+<li>镜像是 Docker 中的静态文件，它包含了用于运行容器的所有文件系统内容、应用程序代码、依赖项、库和配置等。</li>
+<li>镜像是只读的，一旦创建就不能被修改。你可以基于镜像创建容器，但不能直接修改镜像的内容。</li>
+<li>镜像可以看作是一个应用程序的打包和分发形式，它定义了应用程序的运行环境和依赖项。</li>
+</ul>
+<br>
+
+<p>容器（Container）：</p>
+<ul>
+<li>容器是镜像的运行实例，是一个轻量级的、独立的运行环境，其中包含了镜像的内容以及额外的运行时信息（如进程、网络配置等）。</li>
+<li>容器可以被启动、停止、暂停、重启和删除，它是一个动态的实体。</li>
+<li>容器提供了隔离的运行环境，使得应用程序可以在其中独立运行，而不受宿主系统环境的影响。</li>
+</ul>
+<br>
+镜像是用于创建容器的静态模板，而容器是实际运行的、可操作的实体。
+
+<hr>
+<p>常见命令</p>
+<p><code>docker images</code> 列出所有镜像  </p>
+<p><code>docker rmi &lt;镜像名称或镜像ID&gt;</code> 删除镜像</p>
+<p><code>docker ps -a</code> 列出所有容器  </p>
+<p><code>docker rm &lt;容器名称或容器ID&gt;</code> 删除容器</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/04/16/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="clv52d7yd0000aguofq8abotw" data-title="docker常用命令" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-DockerDesktop改变默认安装路径" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/16/DockerDesktop%E6%94%B9%E5%8F%98%E9%BB%98%E8%AE%A4%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84/" class="article-date">
@@ -347,7 +410,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 10px;">教程</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 20px;">教程</a>
     </div>
   </div>
 
@@ -367,6 +430,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/04/16/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">docker常用命令</a>
+          </li>
         
           <li>
             <a href="/2024/04/16/DockerDesktop%E6%94%B9%E5%8F%98%E9%BB%98%E8%AE%A4%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84/">DockerDesktop改变默认安装路径</a>
