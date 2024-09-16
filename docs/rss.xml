@@ -1,4 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://qwtoe.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://qwtoe.github.io</link></image><lastBuildDate>Mon, 16 Sep 2024 07:45:37 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>a三扽a发森</title><link>https://qwtoe.github.io/post/a-san-dun-a-fa-sen.html</link><description>mac&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://qwtoe.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://qwtoe.github.io</link></image><lastBuildDate>Mon, 16 Sep 2024 08:08:27 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>Mac上安装node.js</title><link>https://qwtoe.github.io/post/Mac-shang-an-zhuang-node.js.html</link><description>官网的安装教程 https://nodejs.org/en/download/package-manager ：&#13;
+```bash&#13;
+# installs nvm (Node Version Manager)&#13;
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash&#13;
+&#13;
+# download and install Node.js (you may need to restart the terminal)&#13;
+nvm install 20&#13;
+&#13;
+# verifies the right Node.js version is in the environment&#13;
+node -v # should print `v20.17.0`&#13;
+&#13;
+# verifies the right npm version is in the environment&#13;
+npm -v # should print `10.8.2`&#13;
+```&#13;
+&#13;
+但是执行第一条命令就报错：`Failed to connect to raw.githubusercontent.com port 443 after 8 ms: Couldn't connect to server` &#13;
+&#13;
+**解决办法：**&#13;
+&#13;
+&#13;
+1、https://www.ipaddress.com 查询 `raw.githubusercontent.com` 域名的 ip 地址。</description><guid isPermaLink="true">https://qwtoe.github.io/post/Mac-shang-an-zhuang-node.js.html</guid><pubDate>Mon, 16 Sep 2024 08:08:01 +0000</pubDate></item><item><title>a三扽a发森</title><link>https://qwtoe.github.io/post/a-san-dun-a-fa-sen.html</link><description>mac&#13;
 &#13;
 安装nodejs时：`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash`。</description><guid isPermaLink="true">https://qwtoe.github.io/post/a-san-dun-a-fa-sen.html</guid><pubDate>Mon, 16 Sep 2024 07:36:57 +0000</pubDate></item></channel></rss>
