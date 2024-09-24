@@ -147,6 +147,9 @@ E: Unable to locate package docker-compose-plugin</pre></div>
 <p>再 <code class="notranslate">service docker restsart</code> 就好了：</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">root@lavm-rm2dz6mpkw:ft_userdata# docker-compose pull
 Pulling freqtrade ... <span class="pl-k">done</span></pre></div>
+<p>运行 <code class="notranslate">docker-compose run --rm freqtrade create-userdir --userdir user_data</code> 创建了一个 <code class="notranslate">user_data</code> 目录。</p>
+<p>运行 <code class="notranslate">docker compose run --rm freqtrade new-config --config user_data/config.json</code> ：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/5de1b8fb-5d73-4646-960c-122f93bf3abd"><img src="https://github.com/user-attachments/assets/5de1b8fb-5d73-4646-960c-122f93bf3abd" alt="image" style="max-width: 100%;"></a></p>
 </div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 

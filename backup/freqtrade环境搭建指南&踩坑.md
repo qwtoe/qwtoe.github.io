@@ -87,6 +87,14 @@ root@lavm-rm2dz6mpkw:ft_userdata# docker-compose pull
 Pulling freqtrade ... done
 ```
 
+运行 `docker-compose run --rm freqtrade create-userdir --userdir user_data` 创建了一个 `user_data` 目录。
+
+运行 `docker compose run --rm freqtrade new-config --config user_data/config.json` ：
+
+![image](https://github.com/user-attachments/assets/5de1b8fb-5d73-4646-960c-122f93bf3abd)
+
+
+
 
 
 <!-- ##{"script":"<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>"}## -->
