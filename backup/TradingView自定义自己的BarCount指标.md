@@ -70,3 +70,5 @@ if is_market_open() and count % c_contador == 0
     label.set_yloc(label1, yloc.belowbar)
     label.set_size(label1, labelSize)
 ```
+
+<!-- ##{"script":"<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>"}## -->
