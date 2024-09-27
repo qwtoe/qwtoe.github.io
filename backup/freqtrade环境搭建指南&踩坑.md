@@ -89,7 +89,7 @@ Pulling freqtrade ... done
 
 运行 `docker-compose run --rm freqtrade create-userdir --userdir user_data` 创建了一个 `user_data` 目录。
 
-运行 `docker compose run --rm freqtrade new-config --config user_data/config.json` ：
+运行 `docker compose run --rm freqtrade new-config --config user_data/config.json` ，根据交互生成默认配置文件 ：
 
 ![image](https://github.com/user-attachments/assets/5de1b8fb-5d73-4646-960c-122f93bf3abd)
 
