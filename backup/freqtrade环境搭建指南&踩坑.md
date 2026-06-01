@@ -80,7 +80,7 @@ E: Unable to locate package docker-compose-plugin
 
 > vim 删除整个文件里面的内容：`:%d`
 
-再 `service docker restsart` 就好了：
+再 `service docker restart` 就好了：
 
 ```bash
 root@lavm-rm2dz6mpkw:ft_userdata# docker-compose pull
@@ -92,9 +92,5 @@ Pulling freqtrade ... done
 运行 `docker compose run --rm freqtrade new-config --config user_data/config.json` ，根据交互生成默认配置文件 ：
 
 ![image](https://github.com/user-attachments/assets/5de1b8fb-5d73-4646-960c-122f93bf3abd)
-
-
-
-
 
 <!-- ##{"script":"<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>"}## -->

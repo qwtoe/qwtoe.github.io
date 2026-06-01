@@ -1,7 +1,7 @@
 根据纽约的开盘时间-结束时间显示BarCount，其他时间不显示，还可以定义默认几根K线显示一个BarCount。
 
-pip Script语言：
-```pip Script
+Pine Script 语言：
+```pine
 //@version=4
 study("Bar Count for Market Hours", overlay=true, max_labels_count=500)
 

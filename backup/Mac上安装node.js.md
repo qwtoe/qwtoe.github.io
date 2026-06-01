@@ -47,19 +47,23 @@ https://switchhosts.vercel.app
 
 ---
 
-执行完之后，发现nvm并没有生效，于是手动配置nvm：配置nvm：https://juejin.cn/post/7232499180660768829
+执行完之后，发现nvm并没有生效，于是参考 https://juejin.cn/post/7232499180660768829 手动配置nvm：
 
+1. 配置环境变量：
 ```bash
-1、配置环境变量
-    vim ~/.bash_profile
-    
-2、然后将下面的配置信息输入保存
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-    
-3、刷新环境变量
-    source ~/.bash_profile
+vim ~/.bash_profile
+```
+
+2. 将以下内容写入并保存：
+```bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```
+
+3. 刷新环境变量：
+```bash
+source ~/.bash_profile
 ```
 
 `nvm -v` 成功！
