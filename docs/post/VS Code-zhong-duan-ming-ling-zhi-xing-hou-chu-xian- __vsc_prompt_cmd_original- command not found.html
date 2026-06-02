@@ -99,7 +99,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody"><p>操作系统：Ubuntu Server 20.04 LTS 64bit</p>
 <p>VS Code终端命令执行后老是出现 <code class="notranslate">__vsc_prompt_cmd_original: command not found</code> ：</p>
-<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/30d5454fe2bfa7ef5682feae1a3232c26a039dd263fb03e6aa7035b9069e47f9/68747470733a2f2f6d6f6f6e7069632e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f74662d6665622f32303234303630333232323435322e706e67"><img src="https://camo.githubusercontent.com/30d5454fe2bfa7ef5682feae1a3232c26a039dd263fb03e6aa7035b9069e47f9/68747470733a2f2f6d6f6f6e7069632e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f74662d6665622f32303234303630333232323435322e706e67" alt="" data-canonical-src="https://moonpic.oss-cn-beijing.aliyuncs.com/tf-feb/20240603222452.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/236a2bda2452692d0a899f1b7c8dd1ae7cb91fdce39c4bafeed5d039b214b649/68747470733a2f2f6d6f6f6e7069632e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f74662d6665622f32303234303630333232323435322e706e67"><img src="https://camo.githubusercontent.com/236a2bda2452692d0a899f1b7c8dd1ae7cb91fdce39c4bafeed5d039b214b649/68747470733a2f2f6d6f6f6e7069632e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f74662d6665622f32303234303630333232323435322e706e67" alt="" data-canonical-src="https://moonpic.oss-cn-beijing.aliyuncs.com/tf-feb/20240603222452.png" style="max-width: 100%;"></a></p>
 <p>解决方案：</p>
 <p>1、<code class="notranslate">vim ~/.bashrc</code><br>
 2、在~/.bashrc里面加入命令：<code class="notranslate">unset PROMPT_COMMAND</code><br>
@@ -124,7 +124,7 @@ if("09/16/2024"!=""){
     var startSite=new Date("09/16/2024");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script></div>
 </body>
@@ -169,6 +169,7 @@ document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
     cmButton.innerHTML="loading";
     span=document.createElement("span");
     span.setAttribute("class","AnimatedEllipsis");

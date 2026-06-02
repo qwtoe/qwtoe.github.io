@@ -153,17 +153,21 @@ raw  IN  A  185.199.111.133</pre></div>
 <p>记得打开开关。</p>
 <p>最后：<code class="notranslate">ping raw.githubusercontent.com</code> 成功，然后执行第一条命令即可。</p>
 <hr>
-<p>执行完之后，发现nvm并没有生效，于是手动配置nvm：配置nvm：<a href="https://juejin.cn/post/7232499180660768829" rel="nofollow">https://juejin.cn/post/7232499180660768829</a></p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">1、配置环境变量
-    vim <span class="pl-k">~</span>/.bash_profile
-    
-2、然后将下面的配置信息输入保存
-    <span class="pl-k">export</span> NVM_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/.nvm<span class="pl-pds">"</span></span>
-    [ <span class="pl-k">-s</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$NVM_DIR</span>/nvm.sh<span class="pl-pds">"</span></span> ] <span class="pl-k">&amp;&amp;</span> <span class="pl-cce">\.</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$NVM_DIR</span>/nvm.sh<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> This loads nvm</span>
-    [ <span class="pl-k">-s</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$NVM_DIR</span>/bash_completion<span class="pl-pds">"</span></span> ] <span class="pl-k">&amp;&amp;</span> <span class="pl-cce">\.</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$NVM_DIR</span>/bash_completion<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> This loads nvm bash_completion</span>
-    
-3、刷新环境变量
-    <span class="pl-c1">source</span> <span class="pl-k">~</span>/.bash_profile</pre></div>
+<p>执行完之后，发现nvm并没有生效，于是参考 <a href="https://juejin.cn/post/7232499180660768829" rel="nofollow">https://juejin.cn/post/7232499180660768829</a> 手动配置nvm：</p>
+<ol>
+<li>配置环境变量：</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">vim <span class="pl-k">~</span>/.bash_profile</pre></div>
+<ol start="2">
+<li>将以下内容写入并保存：</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-k">export</span> NVM_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/.nvm<span class="pl-pds">"</span></span>
+[ <span class="pl-k">-s</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$NVM_DIR</span>/nvm.sh<span class="pl-pds">"</span></span> ] <span class="pl-k">&amp;&amp;</span> <span class="pl-cce">\.</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$NVM_DIR</span>/nvm.sh<span class="pl-pds">"</span></span>  <span class="pl-c"><span class="pl-c">#</span> This loads nvm</span>
+[ <span class="pl-k">-s</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$NVM_DIR</span>/bash_completion<span class="pl-pds">"</span></span> ] <span class="pl-k">&amp;&amp;</span> <span class="pl-cce">\.</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$NVM_DIR</span>/bash_completion<span class="pl-pds">"</span></span>  <span class="pl-c"><span class="pl-c">#</span> This loads nvm bash_completion</span></pre></div>
+<ol start="3">
+<li>刷新环境变量：</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c1">source</span> <span class="pl-k">~</span>/.bash_profile</pre></div>
 <p><code class="notranslate">nvm -v</code> 成功！</p>
 <p>继续根据node官网步骤往下安装就行。</p>
 </div>
@@ -186,7 +190,7 @@ if("09/16/2024"!=""){
     var startSite=new Date("09/16/2024");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script></div>
 </body>
@@ -231,6 +235,7 @@ document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
     cmButton.innerHTML="loading";
     span=document.createElement("span");
     span.setAttribute("class","AnimatedEllipsis");

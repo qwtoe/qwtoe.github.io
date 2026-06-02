@@ -144,7 +144,7 @@ E: Unable to locate package docker-compose-plugin</pre></div>
 <blockquote>
 <p>vim 删除整个文件里面的内容：<code class="notranslate">:%d</code></p>
 </blockquote>
-<p>再 <code class="notranslate">service docker restsart</code> 就好了：</p>
+<p>再 <code class="notranslate">service docker restart</code> 就好了：</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">root@lavm-rm2dz6mpkw:ft_userdata# docker-compose pull
 Pulling freqtrade ... <span class="pl-k">done</span></pre></div>
 <p>运行 <code class="notranslate">docker-compose run --rm freqtrade create-userdir --userdir user_data</code> 创建了一个 <code class="notranslate">user_data</code> 目录。</p>
@@ -170,7 +170,7 @@ if("09/16/2024"!=""){
     var startSite=new Date("09/16/2024");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script></div>
 </body>
@@ -215,6 +215,7 @@ document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
     cmButton.innerHTML="loading";
     span=document.createElement("span");
     span.setAttribute("class","AnimatedEllipsis");
