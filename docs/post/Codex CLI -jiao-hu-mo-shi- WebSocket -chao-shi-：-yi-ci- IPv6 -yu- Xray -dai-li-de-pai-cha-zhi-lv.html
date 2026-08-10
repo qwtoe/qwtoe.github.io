@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=rYxZhsdVXXJS&format=png&color=000000"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="背景：Ubuntu 24.04，Codex CLI v0.147.0。">
+<meta property="og:title" content="Codex CLI 交互模式 WebSocket 超时：一次 IPv6 与 Xray 代理的排查之旅">
+<meta property="og:description" content="背景：Ubuntu 24.04，Codex CLI v0.147.0。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qwtoe.github.io/post/Codex%20CLI%20-jiao-hu-mo-shi-%20WebSocket%20-chao-shi-%EF%BC%9A-yi-ci-%20IPv6%20-yu-%20Xray%20-dai-li-de-pai-cha-zhi-lv.html">
+<meta property="og:image" content="https://img.icons8.com/?size=100&id=rYxZhsdVXXJS&format=png&color=000000">
+<title>Codex CLI 交互模式 WebSocket 超时：一次 IPv6 与 Xray 代理的排查之旅</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Codex CLI 交互模式 WebSocket 超时：一次 IPv6 与 Xray 代理的排查之旅</h1>
+<div class="title-right">
+    <a href="https://qwtoe.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/qwtoe/qwtoe.github.io/issues/8" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>背景：Ubuntu 24.04，Codex CLI v0.147.0。人在国内，OpenAI/ChatGPT 的流量全部走 Xray 代理（VLESS+WebSocket 隧道，Docker 部署，v2rayA 镜像，监听 10808 端口）。</p>
+<p>现象很典型：</p>
+<ul>
+<li><code class="notranslate">codex login</code>：正常</li>
+<li><code class="notranslate">codex exec</code>（非交互模式）：正常</li>
+<li><code class="notranslate">codex</code>（交互式 TUI 模式）：界面能正常显示，但只要输入一条消息（比如 <code class="notranslate">test</code>），立刻提示 "Conversation interrupted"，随后进入 "Request timed out" 的无限重连循环</li>
+</ul>
+<div class="highlight highlight-source-shell"><pre class="notranslate">$ codex
+<span class="pl-k">&gt;</span> <span class="pl-c1">test</span>
+Conversation interrupted
+Request timed out
+<span class="pl-c"><span class="pl-c">#</span> 开始不断重连</span></pre></div>
+<p><code class="notranslate">codex exec</code> 能通、TUI 却断，说明不是账号或基础链路的问题，而是某个环节在交互模式下不稳定。开查。</p>
+<h2>第一阶段：怀疑代理配置</h2>
+<p>既然非交互模式正常，第一个怀疑对象就是 WebSocket 长连接 —— 交互模式的消息收发走 WebSocket，普通 HTTP 请求不依赖长连接。把代理的各条路径挨个测了一遍：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> SOCKS5 代理</span>
+curl -x socks5h://127.0.0.1:10808 https://chatgpt.com
+
+<span class="pl-c"><span class="pl-c">#</span> HTTP CONNECT 代理</span>
+curl -x http://127.0.0.1:10808 https://chatgpt.com
+
+<span class="pl-c"><span class="pl-c">#</span> WebSocket 长连接（保持 120s）</span>
+curl -x http://127.0.0.1:10808 -H <span class="pl-s"><span class="pl-pds">"</span>Connection: Upgrade<span class="pl-pds">"</span></span> -H <span class="pl-s"><span class="pl-pds">"</span>Upgrade: websocket<span class="pl-pds">"</span></span> \
+     -H <span class="pl-s"><span class="pl-pds">"</span>Sec-WebSocket-Version: 13<span class="pl-pds">"</span></span> -H <span class="pl-s"><span class="pl-pds">"</span>Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==<span class="pl-pds">"</span></span> \
+     https://chatgpt.com</pre></div>
+<p>结果：全部通过。Xray 日志里也能看到连接被正常接受和转发。<code class="notranslate">codex doctor</code> 的 WebSocket 测试则时好时坏 —— 偶尔通过，偶尔超时。代理本身看起来没问题，但正是这个"时好时坏"让我放不下。</p>
+<h2>第二阶段：怀疑 mux 多路复用</h2>
+<p>注意到 Xray 配置里 <code class="notranslate">mux: false</code>（多路复用被关闭）。多路复用和长连接的组合经常出问题，试试开启：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 配置文件在宿主机上，容器里是只读 bind-mount</span>
+vim /tmp/xray-config/config.json
+<span class="pl-c"><span class="pl-c">#</span> mux: false -&gt; true，保存</span>
+
+<span class="pl-c"><span class="pl-c">#</span> 重启容器</span>
+docker restart v2raya</pre></div>
+<p>结果：<strong>更糟糕</strong>，立刻改回。注意 Xray 配置是只读挂载进容器的，必须先改宿主机的 <code class="notranslate">/tmp/xray-config/config.json</code> 再重启。这个方向排除。</p>
+<h2>第三阶段：关键发现 —— IPv6</h2>
+<p>回头仔细看 <code class="notranslate">codex doctor</code> 的输出，发现一行之前忽略的信息：</p>
+<pre lang="text" class="notranslate"><code class="notranslate">DNS preference: first IPv6
+</code></pre>
+<p>DNS 优先解析 IPv6？验证一下：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">getent ahosts chatgpt.com
+<span class="pl-c"><span class="pl-c">#</span> 返回结果第一行是 IPv6 地址，IPv4 排在后面</span></pre></div>
+<p>再测试强制 IPv6 / IPv4 走 HTTP 代理：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 强制 IPv6 + HTTP 代理：立刻失败</span>
+curl -6 -x http://127.0.0.1:10808 https://chatgpt.com
+
+<span class="pl-c"><span class="pl-c">#</span> 强制 IPv4 + HTTP 代理：正常</span>
+curl -4 -x http://127.0.0.1:10808 https://chatgpt.com</pre></div>
+<p>破案了。问题不是代理，是 <strong>IPv6</strong>。</p>
+<h2>根因分析</h2>
+<ul>
+<li>HTTP 代理模式下，DNS 由<strong>客户端</strong>解析。系统 DNS 优先返回 IPv6，Codex 就优先尝试连 IPv6</li>
+<li>但 Xray 跑在 Docker 里，这个环境<strong>没有 IPv6 出口</strong>，IPv6 连接必然超时</li>
+<li>WebSocket 长连接对超时特别敏感，一超时就报 "Conversation interrupted"，然后进入重连死循环</li>
+<li>而 <code class="notranslate">socks5h://</code> 的 DNS 由<strong>代理端</strong>解析，代理端拿到的是 IPv4 地址，所以 SOCKS5 一直正常</li>
+<li><code class="notranslate">codex exec</code> 偶尔能用：它走 Happy Eyeballs（RFC 6555），IPv6 失败后会回落到 IPv4，比交互模式的 WebSocket 宽容得多</li>
+</ul>
+<h2>解决方案</h2>
+<h3>Fix 1（推荐，系统级）：让 DNS 优先 IPv4</h3>
+<p>编辑 <code class="notranslate">/etc/gai.conf</code>，把 IPv4（IPv4-mapped IPv6）的优先级调到比 IPv6 高：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">sudo vim /etc/gai.conf</pre></div>
+<div class="highlight highlight-source-ini"><pre class="notranslate">precedence ::ffff:0:0/96  100</pre></div>
+<p><code class="notranslate">::ffff:0:0/96</code> 是 IPv4 在 IPv6 地址空间中的映射前缀，RFC 3484 默认优先级只有 10，低于 IPv6 的 40；改成 100 后系统会优先返回 IPv4 地址。改完立即生效，无需重启。</p>
+<h3>Fix 2（用户级，无需 root）</h3>
+<p>不想动系统配置的话，可以在 <code class="notranslate">~/.bashrc</code> 里加：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">'</span>export RES_OPTIONS="inet4"<span class="pl-pds">'</span></span> <span class="pl-k">&gt;&gt;</span> <span class="pl-k">~</span>/.bashrc
+<span class="pl-c1">source</span> <span class="pl-k">~</span>/.bashrc</pre></div>
+<p><strong>注意两点：</strong></p>
+<ol>
+<li>Codex 是静态链接（musl）的二进制，<code class="notranslate">RES_OPTIONS</code> 是 glibc 的环境变量，对它是否生效需要实测确认</li>
+<li>改完环境变量后，一定要杀掉残留的 app-server 进程 —— 那个 8 月 9 号就在跑的旧进程继承的是旧环境变量，不杀不会生效：</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 查看残留进程</span>
+ps aux <span class="pl-k">|</span> grep codex
+
+<span class="pl-c"><span class="pl-c">#</span> 杀掉旧进程，让它用新环境变量重新拉起</span>
+pkill -f <span class="pl-s"><span class="pl-pds">"</span>codex app-server<span class="pl-pds">"</span></span></pre></div>
+<p>验证：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">codex doctor
+<span class="pl-c"><span class="pl-c">#</span> DNS preference 应显示 first IPv4</span></pre></div>
+<h2>总结</h2>
+<ol>
+<li><strong>HTTP 代理和 <code class="notranslate">socks5h://</code> 的 DNS 解析位置不同</strong>：HTTP 代理由客户端解析 DNS，<code class="notranslate">socks5h://</code> 由代理端解析。前者受客户端系统 DNS 配置影响，后者不受 —— 这就是为什么 SOCKS5 一直正常</li>
+<li><strong>Docker/代理环境普遍没有 IPv6 出口</strong>，但现代系统默认优先 IPv6。排查"走代理就连不上"的问题时，<code class="notranslate">curl -6</code> / <code class="notranslate">curl -4</code> 对比 + <code class="notranslate">getent ahosts</code> 是最快的定位手段，<code class="notranslate">/etc/gai.conf</code> 的 <code class="notranslate">precedence</code> 是标准解法</li>
+<li><strong>静态链接二进制不认 glibc 环境变量</strong>：musl 静态链接的程序对 <code class="notranslate">RES_OPTIONS</code> 这类 glibc 专属变量可能无感，改了环境变量要验证是否真正生效</li>
+<li><strong>改环境变量后要杀常驻进程</strong>：后台的 app-server 继承的是启动时的环境，不重启就永远不会用到新配置</li>
+</ol>
+<p>最终 <code class="notranslate">codex</code> 交互模式恢复正常，输入消息不再报 "Conversation interrupted"。</p>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://qwtoe.github.io">moonzfzs' BlogSpace</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("09/16/2024"!=""){
+    var startSite=new Date("09/16/2024");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","qwtoe/qwtoe.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script>
+
+</html>
